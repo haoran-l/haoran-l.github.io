@@ -118,9 +118,9 @@ img {
 }
 
 .brand {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   color: var(--ink);
   font-family: var(--serif);
   font-size: 1.22rem;
@@ -129,8 +129,28 @@ img {
   text-decoration: none;
 }
 
+.brand-marks {
+  position: absolute;
+  right: calc(100% + 0.42rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.brand-marks img {
+  flex: 0 0 auto;
+  max-width: none;
+}
+
+.brand-emblem {
+  width: 26px;
+  height: 28px;
+  object-fit: contain;
+  border-radius: 0.15rem;
+}
+
 .brand-logo {
-  width: 34px;
+  width: 22px;
   height: auto;
   border-radius: 0.2rem;
 }
@@ -270,15 +290,60 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .pronunciation {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.45rem;
   margin: 0.75rem 0 0;
   color: var(--muted);
-  font-size: 0.73rem;
+  font-size: 0.78rem;
   letter-spacing: 0.015em;
 }
 
-.pronunciation span:first-child {
+.pronunciation-label {
+  font-weight: 600;
+}
+
+.pronunciation-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22rem;
+}
+
+.pronunciation-item strong {
   color: var(--ink);
   font-weight: 600;
+}
+
+.pronunciation-play {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: inline-grid;
+  place-items: center;
+  margin-left: 0.12rem;
+  padding: 0;
+  border: 1px solid rgba(90, 52, 88, 0.28);
+  border-radius: 50%;
+  color: var(--plum);
+  background: transparent;
+  font-size: 0.68rem;
+  line-height: 1;
+  cursor: pointer;
+  appearance: none;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.pronunciation-play:hover,
+.pronunciation-play:focus-visible,
+.pronunciation-play.is-playing {
+  border-color: var(--plum);
+  color: var(--paper);
+  background: var(--plum);
+}
+
+.pronunciation-play:focus-visible {
+  outline: 2px solid var(--plum);
+  outline-offset: 2px;
 }
 
 .pronunciation + .role {
@@ -442,24 +507,25 @@ html[lang="zh-Hans"] .role {
   font-size: 0.86rem;
 }
 
-.paper-authors strong {
-  color: var(--ink);
-  font-weight: 650;
+.paper-authors a {
+  color: inherit;
+  text-decoration-color: rgba(90, 52, 88, 0.38);
+  text-underline-offset: 0.16em;
+}
+
+.paper-authors a:hover {
+  color: var(--plum);
+  text-decoration-color: currentColor;
 }
 
 .paper-award {
   margin: 0.85rem 0 0;
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.paper-award span {
-  margin-right: 0.45rem;
   color: var(--plum);
-  font-size: 0.65rem;
-  font-weight: 750;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 550;
+  letter-spacing: 0.01em;
 }
 
 .paper-link {
@@ -555,6 +621,14 @@ html[lang="zh-Hans"] .role {
   outline-offset: 4px;
 }
 
+@media (min-width: 761px) and (max-width: 1140px) {
+  .nav-shell,
+  .page-shell,
+  .footer-shell {
+    width: min(100% - 5.5rem, 1060px);
+  }
+}
+
 @media (max-width: 760px) {
   .nav-shell,
   .page-shell,
@@ -570,8 +644,8 @@ html[lang="zh-Hans"] .role {
     gap: 0.45rem;
   }
 
-  .brand-logo {
-    width: 29px;
+  .brand-marks {
+    display: none;
   }
 
   .nav-actions {

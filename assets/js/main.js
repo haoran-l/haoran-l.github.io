@@ -39,3 +39,33 @@ if (themeToggle) {
 document.querySelectorAll("[data-current-year]").forEach((node) => {
   node.textContent = String(new Date().getFullYear());
 });
+
+let activePronunciationAudio = null;
+let activePronunciationButton = null;
+
+document.querySelectorAll("[data-pronunciation-audio]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (activePronunciationAudio) {
+      activePronunciationAudio.pause();
+      activePronunciationAudio.currentTime = 0;
+      activePronunciationButton?.classList.remove("is-playing");
+    }
+
+    const audio = new Audio(button.dataset.pronunciationAudio);
+    activePronunciationAudio = audio;
+    activePronunciationButton = button;
+    button.classList.add("is-playing");
+
+    const reset = () => {
+      button.classList.remove("is-playing");
+      if (activePronunciationAudio === audio) {
+        activePronunciationAudio = null;
+        activePronunciationButton = null;
+      }
+    };
+
+    audio.addEventListener("ended", reset, { once: true });
+    audio.addEventListener("error", reset, { once: true });
+    audio.play().catch(reset);
+  });
+});
