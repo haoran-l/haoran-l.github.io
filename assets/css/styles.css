@@ -118,9 +118,9 @@ img {
 }
 
 .brand {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  gap: 0.65rem;
   color: var(--ink);
   font-family: var(--serif);
   font-size: 1.22rem;
@@ -130,29 +130,10 @@ img {
 }
 
 .brand-marks {
-  position: absolute;
-  right: calc(100% + 0.42rem);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.brand-marks img {
   flex: 0 0 auto;
-  max-width: none;
-}
-
-.brand-emblem {
-  width: 26px;
-  height: 28px;
-  object-fit: contain;
-  border-radius: 0.15rem;
-}
-
-.brand-logo {
-  width: 22px;
+  width: 96px;
   height: auto;
-  border-radius: 0.2rem;
+  max-width: none;
 }
 
 .nav-actions {
@@ -417,7 +398,7 @@ html[lang="zh-Hans"] .role {
 .portrait-wrap {
   position: relative;
   width: min(100%, 275px);
-  margin: 0;
+  margin: 0 0 0 calc(96px + 0.65rem);
   justify-self: start;
   grid-column: 1;
   grid-row: 1;
@@ -621,11 +602,17 @@ html[lang="zh-Hans"] .role {
   outline-offset: 4px;
 }
 
-@media (min-width: 761px) and (max-width: 1140px) {
-  .nav-shell,
-  .page-shell,
-  .footer-shell {
-    width: min(100% - 5.5rem, 1060px);
+@media (max-width: 1140px) {
+  .brand {
+    gap: 0;
+  }
+
+  .brand-marks {
+    display: none;
+  }
+
+  .portrait-wrap {
+    margin-left: 0;
   }
 }
 
@@ -638,14 +625,6 @@ html[lang="zh-Hans"] .role {
 
   .nav-shell {
     gap: 0.7rem;
-  }
-
-  .brand {
-    gap: 0.45rem;
-  }
-
-  .brand-marks {
-    display: none;
   }
 
   .nav-actions {
