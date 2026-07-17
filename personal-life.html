@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Curriculum vitae of Haoran Liu, Ph.D. candidate in Accountancy at The Chinese University of Hong Kong.">
+    <meta name="description" content="A glimpse into Haoran Liu's personal life and hiking journeys across Hong Kong.">
     <meta name="theme-color" content="#f5f1e8">
-    <title>CV | Haoran Liu</title>
+    <title>Personal Life | Haoran Liu</title>
     <link rel="icon" type="image/svg+xml" sizes="any" href="assets/img/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,8 +23,8 @@
         <div class="nav-actions">
           <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="cv.html" aria-current="page">CV</a></li>
-            <li><a href="personal-life.html">Personal Life</a></li>
+            <li><a href="cv.html">CV</a></li>
+            <li><a href="personal-life.html" aria-current="page">Personal Life</a></li>
             <li><a href="zh/index.html" lang="zh-Hans">中文主页</a></li>
           </ul>
           <button class="theme-toggle" type="button" aria-label="Use dark mode" title="Use dark mode" hidden>
@@ -35,14 +35,33 @@
       </nav>
     </header>
 
-    <main id="main" class="cv-page">
-      <div class="cv-heading">
-        <h1>Curriculum Vitae</h1>
-        <a class="cv-open" href="assets/docs/Haoran_Liu_CV.pdf#zoom=page-width" target="_blank">Open PDF</a>
-      </div>
-      <div class="cv-frame-shell">
-        <iframe class="cv-frame" src="assets/docs/Haoran_Liu_CV.pdf#navpanes=0&amp;zoom=page-width&amp;view=FitH" title="Curriculum vitae of Haoran Liu" loading="lazy"></iframe>
-      </div>
+    <main id="main" class="page-shell life-page">
+      <section class="life-intro" aria-labelledby="life-title">
+        <div>
+          <p class="eyebrow">On the trail</p>
+          <h1 id="life-title">Personal Life</h1>
+          <p class="life-lede">In my personal time, I enjoy hiking across Hong Kong and discovering its ridgelines, islands, and coasts. Being outdoors offers a welcome change of pace and a simple way to stay connected with nature.</p>
+        </div>
+        <blockquote class="life-quote">
+          <p>“Only those who risk going too far can possibly find out how far one can go.”</p>
+          <cite>— T. S. Eliot</cite>
+        </blockquote>
+      </section>
+
+      <section class="life-gallery" aria-label="Scenes from walks around Hong Kong">
+        <figure class="life-card life-card--feature">
+          <img src="assets/img/personal-life/bay-view.jpg" alt="A turquoise reservoir surrounded by green hills in Hong Kong">
+          <figcaption>Between hills and water</figcaption>
+        </figure>
+        <figure class="life-card">
+          <img src="assets/img/personal-life/sunset-sea.jpg" alt="The sun setting over the sea beside a pier">
+          <figcaption>Evening by the sea</figcaption>
+        </figure>
+        <figure class="life-card">
+          <img src="assets/img/personal-life/ridge-trail.jpg" alt="A green mountain ridge opening toward the coast">
+          <figcaption>Along the ridge</figcaption>
+        </figure>
+      </section>
     </main>
 
     <footer class="site-footer">
@@ -53,7 +72,7 @@
     </footer>
 
     <div class="visitor-tracker" aria-hidden="true">
-      <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=PZvABzXjX2F--AxiGXxtJPtreHkvyaOb8vKMuLHXktQ&cl=ffffff&w=a"></script>
+      <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=PZvABzXjX2F--AxiGXxtJPtreHkvyaOb8vKMuLHXktQ&amp;cl=ffffff&amp;w=a"></script>
     </div>
   </body>
 </html>
