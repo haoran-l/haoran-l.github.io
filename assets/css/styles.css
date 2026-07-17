@@ -582,21 +582,95 @@ html[lang="zh-Hans"] .home h1 {
   background: #fff;
 }
 
-.life-page {
+.trail-journal {
+  display: grid;
+  grid-template-columns: minmax(190px, 220px) minmax(0, 1fr);
+  gap: clamp(3rem, 6vw, 5.5rem);
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
 }
 
-.life-intro {
+.trail-sidebar {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  padding-right: 1.5rem;
+  border-right: 1px solid var(--line);
+}
+
+.trail-sidebar-label {
+  margin: 0 0 0.75rem;
+  color: var(--plum);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.trail-index {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(250px, 0.7fr);
-  gap: clamp(2.5rem, 7vw, 6rem);
-  align-items: end;
+}
+
+.trail-index a {
+  display: grid;
+  grid-template-columns: 1.8rem minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: start;
+  padding: 0.58rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 150ms ease, padding-left 150ms ease;
+}
+
+.trail-index a:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.trail-index a:hover,
+.trail-index a[aria-current="page"] {
+  padding-left: 0.25rem;
+  color: var(--plum);
+}
+
+.trail-number {
+  padding-top: 0.17rem;
+  color: var(--plum);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.trail-index strong,
+.trail-index small {
+  display: block;
+}
+
+.trail-index strong {
+  color: inherit;
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  font-weight: 560;
+  line-height: 1.2;
+}
+
+.trail-index small {
+  margin-top: 0.12rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.trail-journal-content {
+  min-width: 0;
+}
+
+.life-intro {
+  max-width: 720px;
 }
 
 .life-intro h1 {
   margin: 0;
   font-family: var(--serif);
-  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-size: clamp(3rem, 6vw, 4.55rem);
   font-weight: 520;
   letter-spacing: -0.045em;
   line-height: 0.95;
@@ -610,63 +684,151 @@ html[lang="zh-Hans"] .home h1 {
   line-height: 1.6;
 }
 
-.life-quote {
-  margin: 0;
-  padding-left: 1.35rem;
-  border-left: 2px solid rgba(90, 52, 88, 0.42);
-  color: var(--muted);
+.trail-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.9rem, 2vw, 1.35rem);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
 }
 
-.life-quote p {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 1.08rem;
-  line-height: 1.5;
+.trail-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background: var(--portrait-bg);
+  box-shadow: var(--shadow);
+  color: #fff;
+  text-decoration: none;
 }
 
-.life-quote cite {
+.trail-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 350ms ease;
+}
+
+.trail-card:hover img {
+  transform: scale(1.025);
+}
+
+.trail-card-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 42%, rgba(24, 19, 23, 0.72));
+}
+
+.trail-card-copy {
+  position: absolute;
+  right: 1.15rem;
+  bottom: 1rem;
+  left: 1.15rem;
+}
+
+.trail-card-copy small,
+.trail-card-copy strong {
   display: block;
-  margin-top: 0.65rem;
-  color: var(--plum);
-  font-size: 0.72rem;
-  font-style: normal;
+}
+
+.trail-card-copy small {
+  margin-bottom: 0.15rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.life-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(1.2rem, 2.5vw, 2rem);
-  margin-top: clamp(2.75rem, 6vw, 5rem);
+.trail-card-copy strong {
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem);
+  font-weight: 560;
+  line-height: 1.05;
 }
 
-.life-card {
+.route-header {
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.route-kicker {
+  margin: 0 0 0.7rem;
+  color: var(--plum);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.route-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-weight: 520;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+}
+
+.route-title-zh {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  font-family: "KaiTi", "STKaiti", "Kaiti SC", "Noto Serif SC", serif;
+  font-size: 1.2rem;
+}
+
+.route-photo {
   margin: 0;
 }
 
-.life-card--feature {
-  grid-column: 1 / -1;
-}
-
-.life-card img {
+.route-photo img,
+.route-photo-placeholder {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
-  border-radius: 0.75rem;
+  border-radius: 0.8rem;
   box-shadow: var(--shadow);
 }
 
-.life-card--feature img {
-  aspect-ratio: 16 / 8.4;
+.route-photo img {
+  object-fit: cover;
 }
 
-.life-card figcaption {
-  margin-top: 0.65rem;
+.route-photo-placeholder {
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  border: 1px solid var(--line);
   color: var(--muted);
+  background: var(--surface);
   font-family: var(--serif);
-  font-size: 0.92rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.route-note {
+  max-width: 650px;
+  margin: 1.4rem 0 0;
+  font-family: var(--serif);
+  font-size: 1.08rem;
+}
+
+.route-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 2.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.route-pager a {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.route-pager a:hover {
+  color: var(--plum);
 }
 
 .site-footer {
@@ -782,26 +944,36 @@ html[lang="zh-Hans"] .home h1 {
     min-height: 620px;
   }
 
-  .life-page {
+  .trail-journal {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
     padding-top: 2.5rem;
   }
 
-  .life-intro,
-  .life-gallery {
+  .trail-sidebar {
+    position: static;
+    padding: 0 0 1rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .trail-index {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(155px, 0.72fr);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
+  }
+
+  .trail-index a {
+    padding-right: 1rem;
+    border-bottom: 1px solid var(--line);
+  }
+}
+
+@media (max-width: 620px) {
+  .trail-feature-grid {
     grid-template-columns: 1fr;
-  }
-
-  .life-intro {
-    gap: 2rem;
-  }
-
-  .life-card--feature {
-    grid-column: auto;
-  }
-
-  .life-card img,
-  .life-card--feature img {
-    aspect-ratio: 4 / 3;
   }
 }
 

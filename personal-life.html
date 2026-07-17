@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="A glimpse into Haoran Liu's personal life and hiking journeys across Hong Kong.">
+    <meta name="description" content="Haoran Liu's hiking journal, exploring trails, ridgelines, islands, and coasts across Hong Kong.">
     <meta name="theme-color" content="#f5f1e8">
     <title>Personal Life | Haoran Liu</title>
     <link rel="icon" type="image/svg+xml" sizes="any" href="assets/img/favicon.svg">
@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;display=swap" rel="stylesheet">
     <script>try{const t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
-    <link rel="stylesheet" href="assets/css/styles.css?v=20260717-24">
+    <link rel="stylesheet" href="assets/css/styles.css?v=20260718-1">
     <script defer src="assets/js/main.js?v=20260717-4"></script>
   </head>
   <body>
@@ -24,8 +24,8 @@
           <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="cv.html">CV</a></li>
-            <li><a href="personal-life.html" aria-current="page">Personal Life</a></li>
             <li><a href="zh/index.html" lang="zh-Hans">中文主页</a></li>
+            <li><a href="personal-life.html" aria-current="page">Personal Life</a></li>
           </ul>
           <button class="theme-toggle" type="button" aria-label="Use dark mode" title="Use dark mode" hidden>
             <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.2 8.2 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg>
@@ -35,33 +35,53 @@
       </nav>
     </header>
 
-    <main id="main" class="page-shell life-page">
-      <section class="life-intro" aria-labelledby="life-title">
-        <div>
+    <main id="main" class="page-shell trail-journal">
+      <aside class="trail-sidebar" aria-label="Hiking routes">
+        <p class="trail-sidebar-label">Trails &amp; Places</p>
+        <nav class="trail-index">
+          <a href="hikes/victoria-peak.html"><span class="trail-number">01</span><span><strong>Victoria Peak</strong><small>太平山頂</small></span></a>
+          <a href="hikes/tai-mo-shan.html"><span class="trail-number">02</span><span><strong>Tai Mo Shan</strong><small>大帽山</small></span></a>
+          <a href="hikes/lamma-island.html"><span class="trail-number">03</span><span><strong>Lamma Island</strong><small>南丫島</small></span></a>
+          <a href="hikes/lai-chi-wo.html"><span class="trail-number">04</span><span><strong>Lai Chi Wo</strong><small>荔枝窩</small></span></a>
+          <a href="hikes/lantau-trail.html"><span class="trail-number">05</span><span><strong>Lantau Trail</strong><small>大嶼山 · 分流</small></span></a>
+          <a href="hikes/shek-o.html"><span class="trail-number">06</span><span><strong>Shek O</strong><small>石澳</small></span></a>
+          <a href="hikes/sai-kung-north.html"><span class="trail-number">07</span><span><strong>Sai Kung North</strong><small>西貢北</small></span></a>
+          <a href="hikes/pat-sin-leng.html"><span class="trail-number">08</span><span><strong>Pat Sin Leng</strong><small>八仙嶺</small></span></a>
+          <a href="hikes/ma-on-shan.html"><span class="trail-number">09</span><span><strong>Ma On Shan</strong><small>馬鞍山</small></span></a>
+          <a href="hikes/tai-to-yan.html"><span class="trail-number">10</span><span><strong>Tai To Yan</strong><small>大刀屻</small></span></a>
+        </nav>
+      </aside>
+
+      <div class="trail-journal-content">
+        <section class="life-intro" aria-labelledby="life-title">
           <p class="eyebrow">On the trail</p>
           <h1 id="life-title">Personal Life</h1>
           <p class="life-lede">In my personal time, I enjoy hiking across Hong Kong and discovering its ridgelines, islands, and coasts. Being outdoors offers a welcome change of pace and a simple way to stay connected with nature.</p>
-        </div>
-        <blockquote class="life-quote">
-          <p>“Only those who risk going too far can possibly find out how far one can go.”</p>
-          <cite>— T. S. Eliot</cite>
-        </blockquote>
-      </section>
+        </section>
 
-      <section class="life-gallery" aria-label="Scenes from walks around Hong Kong">
-        <figure class="life-card life-card--feature">
-          <img src="assets/img/personal-life/bay-view.jpg" alt="A turquoise reservoir surrounded by green hills in Hong Kong">
-          <figcaption>Between hills and water</figcaption>
-        </figure>
-        <figure class="life-card">
-          <img src="assets/img/personal-life/sunset-sea.jpg" alt="The sun setting over the sea beside a pier">
-          <figcaption>Evening by the sea</figcaption>
-        </figure>
-        <figure class="life-card">
-          <img src="assets/img/personal-life/ridge-trail.jpg" alt="A green mountain ridge opening toward the coast">
-          <figcaption>Along the ridge</figcaption>
-        </figure>
-      </section>
+        <section class="trail-feature-grid" aria-label="Selected hiking routes">
+          <a class="trail-card" href="hikes/victoria-peak.html">
+            <img src="assets/img/hikes/victoria-peak.jpg" alt="Hong Kong's skyline viewed from Victoria Peak">
+            <span class="trail-card-shade"></span>
+            <span class="trail-card-copy"><small>01 · 太平山頂</small><strong>Victoria Peak</strong></span>
+          </a>
+          <a class="trail-card" href="hikes/lamma-island.html">
+            <img src="assets/img/hikes/lamma-island.jpg" alt="A quiet beach backed by green hills on Lamma Island">
+            <span class="trail-card-shade"></span>
+            <span class="trail-card-copy"><small>03 · 南丫島</small><strong>Lamma Island</strong></span>
+          </a>
+          <a class="trail-card" href="hikes/lantau-trail.html">
+            <img src="assets/img/hikes/lantau-trail.jpg" alt="A coastal view toward islands from the Lantau Trail">
+            <span class="trail-card-shade"></span>
+            <span class="trail-card-copy"><small>05 · 大嶼山</small><strong>Lantau Trail</strong></span>
+          </a>
+          <a class="trail-card" href="hikes/ma-on-shan.html">
+            <img src="assets/img/hikes/ma-on-shan.jpg" alt="Mountain ridges and coastline seen from Ma On Shan">
+            <span class="trail-card-shade"></span>
+            <span class="trail-card-copy"><small>09 · 馬鞍山</small><strong>Ma On Shan</strong></span>
+          </a>
+        </section>
+      </div>
     </main>
 
     <footer class="site-footer">
