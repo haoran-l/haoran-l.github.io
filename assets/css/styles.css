@@ -579,9 +579,9 @@ html[lang="zh-Hans"] .role {
 
 .cv-frame {
   display: block;
-  width: calc(100% + 4rem);
+  width: 100%;
   height: 100%;
-  margin-left: -1rem;
+  margin-left: 0;
   border: 0;
   background: #fff;
 }
