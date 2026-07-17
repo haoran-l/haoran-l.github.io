@@ -214,12 +214,11 @@ img {
 }
 
 .home {
-  min-height: calc(100svh - 130px);
   display: grid;
   grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
   gap: clamp(3rem, 7vw, 6rem);
   align-items: center;
-  padding: clamp(3.25rem, 7vh, 5.5rem) 0;
+  padding: clamp(1.65rem, 3.5vh, 2.75rem) 0 clamp(2.75rem, 5vh, 4rem);
 }
 
 .home-copy {
@@ -388,6 +387,92 @@ html[lang="zh-Hans"] .home h1 span {
   display: grid;
 }
 
+.research-section {
+  padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+  border-top: 1px solid var(--line);
+}
+
+.research-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.research-heading h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 520;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.research-heading p {
+  margin: 0;
+  color: var(--plum);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.paper-entry {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 2rem;
+  align-items: start;
+  padding: 1.6rem 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.paper-entry h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 2.3vw, 1.8rem);
+  font-weight: 560;
+  line-height: 1.25;
+}
+
+.paper-authors {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.paper-authors strong {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+.paper-award {
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.paper-award span {
+  margin-right: 0.45rem;
+  color: var(--plum);
+  font-size: 0.65rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.paper-link {
+  color: var(--plum);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.paper-link:hover {
+  text-decoration: underline;
+}
+
 .cv-page {
   width: min(1180px, calc(100% - 3rem));
   min-height: calc(100svh - 130px);
@@ -509,7 +594,7 @@ html[lang="zh-Hans"] .home h1 span {
     min-height: auto;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 2.75rem 0 3.5rem;
+    padding: 1.6rem 0 3rem;
   }
 
   .portrait-wrap {
@@ -527,6 +612,15 @@ html[lang="zh-Hans"] .home h1 span {
 
   .home h1 {
     font-size: clamp(2.5rem, 12vw, 3.2rem);
+  }
+
+  .research-heading {
+    align-items: flex-end;
+  }
+
+  .paper-entry {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
   }
 
   .footer-shell {
