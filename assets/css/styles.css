@@ -399,7 +399,7 @@ html[lang="zh-Hans"] .role {
 
 .research-heading {
   display: block;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .research-heading h2 {
@@ -412,10 +412,10 @@ html[lang="zh-Hans"] .role {
 }
 
 .research-heading p {
-  margin: 0.65rem 0 0;
+  margin: 1rem 0 0;
   color: var(--ink);
   font-family: var(--serif);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 550;
   letter-spacing: -0.01em;
 }
