@@ -219,8 +219,8 @@ img {
 
 .home {
   display: grid;
-  grid-template-columns: 275px minmax(0, 1fr);
-  gap: clamp(2.25rem, 3vw, 2.75rem);
+  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
+  gap: clamp(4.25rem, 9vw, 7.25rem);
   align-items: start;
   padding: clamp(2.75rem, 6vh, 4.25rem) 0 clamp(1.75rem, 3vh, 2.5rem);
 }
