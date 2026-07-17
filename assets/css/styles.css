@@ -567,13 +567,23 @@ html[lang="zh-Hans"] .role {
   background: var(--plum-dark);
 }
 
-.cv-frame {
+.cv-frame-shell {
   width: 100%;
   height: calc(100svh - 180px);
   min-height: 720px;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 0.8rem;
-  background: var(--surface);
+  background: #fff;
+}
+
+.cv-frame {
+  display: block;
+  width: calc(100% + 4rem);
+  height: 100%;
+  margin-left: -1rem;
+  border: 0;
+  background: #fff;
 }
 
 .site-footer {
@@ -684,7 +694,7 @@ html[lang="zh-Hans"] .role {
     align-items: center;
   }
 
-  .cv-frame {
+  .cv-frame-shell {
     height: calc(100svh - 160px);
     min-height: 620px;
   }
