@@ -21,8 +21,8 @@ const updateThemeControl = () => {
     : (isDark ? "Use light mode" : "Use dark mode");
   themeToggle.setAttribute("aria-label", label);
   themeToggle.setAttribute("title", label);
-  const icon = themeToggle.querySelector("i");
-  if (icon) icon.className = isDark ? "fa-solid fa-sun" : "fa-solid fa-moon";
+  themeToggle.classList.toggle("is-dark", isDark);
+  themeToggle.hidden = false;
 };
 
 if (themeToggle) {

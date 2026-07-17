@@ -137,7 +137,9 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
   gap: 1rem;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -174,7 +176,36 @@ img {
   color: var(--muted);
   background: var(--surface);
   cursor: pointer;
-  font-size: 0.82rem;
+  appearance: none;
+  -webkit-appearance: none;
+  align-self: center;
+  line-height: 0;
+}
+
+.theme-toggle[hidden] {
+  display: none;
+}
+
+.theme-icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-toggle.is-dark .theme-icon-moon {
+  display: none;
+}
+
+.theme-toggle.is-dark .theme-icon-sun {
+  display: block;
 }
 
 .theme-toggle:hover {
@@ -235,6 +266,17 @@ img {
   line-height: 1.35;
 }
 
+html[lang="zh-Hans"] .home h1 {
+  font-family: "KaiTi", "STKaiti", "Kaiti SC", "Noto Serif SC", serif;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+html[lang="zh-Hans"] .home h1 span {
+  font-family: var(--serif);
+  letter-spacing: 0;
+}
+
 .role {
   margin: 1.25rem 0 0;
   color: var(--muted);
@@ -259,17 +301,30 @@ img {
 }
 
 .profile-links a {
-  width: 42px;
-  height: 42px;
+  width: 48px;
+  height: 48px;
   display: inline-grid;
   place-items: center;
   border: 1px solid rgba(90, 52, 88, 0.25);
   border-radius: 50%;
   color: var(--plum);
   background: rgba(255, 253, 248, 0.62);
-  font-size: 1.12rem;
+  font-size: 1.28rem;
+  line-height: 1;
   text-decoration: none;
   transition: color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+
+.profile-links .ssrn-link {
+  width: 64px;
+  border-radius: 999px;
+}
+
+.ssrn-mark {
+  font-family: var(--sans);
+  font-size: 0.64rem;
+  font-weight: 800;
+  letter-spacing: 0.035em;
 }
 
 .profile-links a:hover {
