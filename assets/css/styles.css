@@ -218,7 +218,7 @@ img {
 .home {
   display: grid;
   grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
-  gap: clamp(3rem, 7vw, 6rem);
+  gap: clamp(3.75rem, 7.5vw, 6.5rem);
   align-items: start;
   padding: clamp(2.75rem, 6vh, 4.25rem) 0 clamp(1.75rem, 3vh, 2.5rem);
 }
@@ -704,4 +704,16 @@ html[lang="zh-Hans"] .role {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+.visitor-tracker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  clip-path: inset(50%);
 }
