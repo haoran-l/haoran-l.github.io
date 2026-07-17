@@ -218,7 +218,7 @@ img {
   grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
   gap: clamp(3rem, 7vw, 6rem);
   align-items: center;
-  padding: clamp(1.65rem, 3.5vh, 2.75rem) 0 clamp(2.75rem, 5vh, 4rem);
+  padding: clamp(2.35rem, 5vh, 3.75rem) 0 clamp(2.75rem, 5vh, 4rem);
 }
 
 .home-copy {
@@ -598,7 +598,7 @@ html[lang="zh-Hans"] .role {
     min-height: auto;
     grid-template-columns: 1fr;
     gap: 2.5rem;
-    padding: 1.6rem 0 3rem;
+    padding: 2.1rem 0 3rem;
   }
 
   .portrait-wrap {
