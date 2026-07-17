@@ -153,7 +153,7 @@ img {
 
 .nav-links a {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-decoration: none;
@@ -254,26 +254,10 @@ img {
   line-height: 0.96;
 }
 
-.home h1 span {
-  display: block;
-  margin-top: 0.55rem;
-  color: var(--muted);
-  font-family: var(--sans);
-  font-size: 0.25em;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  line-height: 1.35;
-}
-
 html[lang="zh-Hans"] .home h1 {
   font-family: "KaiTi", "STKaiti", "Kaiti SC", "Noto Serif SC", serif;
   font-weight: 500;
   letter-spacing: 0.03em;
-}
-
-html[lang="zh-Hans"] .home h1 span {
-  font-family: var(--serif);
-  letter-spacing: 0;
 }
 
 .role {
@@ -282,6 +266,26 @@ html[lang="zh-Hans"] .home h1 span {
   font-family: var(--serif);
   font-size: clamp(1.15rem, 2vw, 1.45rem);
   font-style: italic;
+}
+
+.pronunciation {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-size: 0.73rem;
+  letter-spacing: 0.015em;
+}
+
+.pronunciation span:first-child {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.pronunciation + .role {
+  margin-top: 0.65rem;
+}
+
+html[lang="zh-Hans"] .role {
+  font-style: normal;
 }
 
 .intro {
@@ -582,7 +586,7 @@ html[lang="zh-Hans"] .home h1 span {
   }
 
   .nav-links a {
-    font-size: 0.7rem;
+    font-size: 0.74rem;
   }
 
   .theme-toggle {
