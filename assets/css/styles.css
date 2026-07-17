@@ -218,7 +218,7 @@ img {
   grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
   gap: clamp(3rem, 7vw, 6rem);
   align-items: start;
-  padding: clamp(2.75rem, 6vh, 4.25rem) 0 clamp(2.75rem, 5vh, 4rem);
+  padding: clamp(2.75rem, 6vh, 4.25rem) 0 clamp(1.75rem, 3vh, 2.5rem);
 }
 
 .home-copy {
@@ -350,7 +350,7 @@ html[lang="zh-Hans"] .role {
 
 .portrait-wrap {
   position: relative;
-  width: min(100%, 300px);
+  width: min(100%, 275px);
   margin: 0;
   justify-self: start;
   grid-column: 1;
@@ -392,15 +392,12 @@ html[lang="zh-Hans"] .role {
 }
 
 .research-section {
-  padding: clamp(2.75rem, 5vw, 4.5rem) 0 clamp(3.5rem, 6vw, 5.5rem);
+  padding: clamp(1.75rem, 3vw, 2.75rem) 0 clamp(3.5rem, 6vw, 5.5rem);
   border-top: 1px solid var(--line);
 }
 
 .research-heading {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2rem;
+  display: block;
   margin-bottom: 1.5rem;
 }
 
@@ -414,12 +411,12 @@ html[lang="zh-Hans"] .role {
 }
 
 .research-heading p {
-  margin: 0;
-  color: var(--plum);
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  margin: 0.65rem 0 0;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 550;
+  letter-spacing: -0.01em;
 }
 
 .paper-entry {
@@ -427,8 +424,7 @@ html[lang="zh-Hans"] .role {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 2rem;
   align-items: start;
-  padding: 1.6rem 0 0;
-  border-top: 1px solid var(--line);
+  padding: 0;
 }
 
 .paper-entry h3 {
@@ -616,10 +612,6 @@ html[lang="zh-Hans"] .role {
 
   .home h1 {
     font-size: clamp(2.5rem, 12vw, 3.2rem);
-  }
-
-  .research-heading {
-    align-items: flex-end;
   }
 
   .paper-entry {
