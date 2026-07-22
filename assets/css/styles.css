@@ -912,11 +912,11 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .footer-shell {
-  min-height: 64px;
-  display: flex;
+  min-height: 78px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  gap: 0.4rem 1.5rem;
   color: var(--muted);
   font-size: 0.72rem;
 }
@@ -928,6 +928,17 @@ html[lang="zh-Hans"] .home h1 {
 .footer-shell a {
   color: inherit;
   text-decoration: none;
+}
+
+.footer-shell > p:last-child {
+  justify-self: end;
+}
+
+.footer-metadata {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
 }
 
 :focus-visible {
@@ -1001,9 +1012,18 @@ html[lang="zh-Hans"] .home h1 {
   .footer-shell {
     min-height: auto;
     padding: 1.2rem 0;
-    flex-direction: column;
+    grid-template-columns: 1fr;
     align-items: flex-start;
     gap: 0.3rem;
+  }
+
+  .footer-shell > p:last-child {
+    justify-self: start;
+  }
+
+  .footer-metadata {
+    grid-column: 1;
+    width: 100%;
   }
 
   .cv-page {
