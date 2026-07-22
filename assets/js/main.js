@@ -43,25 +43,24 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 const footerShell = document.querySelector(".footer-shell");
 
 if (footerShell) {
-  const footerMetadata = document.createElement("p");
-  footerMetadata.className = "footer-metadata";
-
-  const lastUpdate = document.createElement("span");
+  const lastUpdate = document.createElement("p");
+  lastUpdate.className = "footer-last-update";
   const modifiedAt = new Date(document.lastModified);
   const modifiedLabel = Number.isNaN(modifiedAt.getTime())
     ? "—"
     : new Intl.DateTimeFormat("en-US", { month: "long", year: "numeric" }).format(modifiedAt);
   lastUpdate.textContent = `Last Update: ${modifiedLabel}`;
 
-  const siteVisits = document.createElement("span");
+  const siteVisits = document.createElement("p");
+  siteVisits.className = "footer-site-visits";
   siteVisits.textContent = "Site Visits: ";
   const siteVisitCount = document.createElement("span");
   siteVisitCount.textContent = "—";
   siteVisitCount.setAttribute("aria-live", "polite");
   siteVisits.append(siteVisitCount);
 
-  footerMetadata.append(lastUpdate, siteVisits);
-  footerShell.insertBefore(footerMetadata, footerShell.lastElementChild);
+  footerShell.prepend(lastUpdate);
+  footerShell.append(siteVisits);
 
   const visitorTracker = document.querySelector(".visitor-tracker");
   let visitorObserver = null;
