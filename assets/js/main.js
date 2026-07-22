@@ -41,6 +41,8 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 });
 
 const footerShell = document.querySelector(".footer-shell");
+const siteVisitFallbackUrl = "https://pub-7f356cb589ad41c8b97676a5481bfcbb.r2.dev/site-info";
+const visitCountBaseline = 36;
 
 if (footerShell) {
   const lastUpdate = document.createElement("p");
@@ -64,28 +66,70 @@ if (footerShell) {
 
   const visitorTracker = document.querySelector(".visitor-tracker");
   let visitorObserver = null;
+  let hasMapMyVisitorsCount = false;
+  const cachedVisitCountKey = "haoran-site-visit-count";
 
-  const updateVisitCount = () => {
+  const setVisitCount = (value) => {
+    const numericValue = Number(String(value).replace(/,/g, ""));
+    if (!Number.isFinite(numericValue) || numericValue < 0) return false;
+
+    siteVisitCount.textContent = new Intl.NumberFormat("en-US").format(numericValue);
+    try { localStorage.setItem(cachedVisitCountKey, String(numericValue)); } catch (error) { /* Storage may be disabled. */ }
+    return true;
+  };
+
+  setVisitCount(visitCountBaseline);
+
+  try {
+    const cachedVisitCount = localStorage.getItem(cachedVisitCountKey);
+    if (cachedVisitCount !== null) setVisitCount(cachedVisitCount);
+  } catch (error) { /* Storage may be disabled. */ }
+
+  const updateVisitCountFromMap = () => {
     const counterText = visitorTracker
       ?.querySelector(".mapmyvisitors-visitors")
       ?.textContent?.trim();
     const count = counterText?.match(/\d[\d,]*/)?.[0];
 
-    if (!count) return false;
-    siteVisitCount.textContent = count;
+    if (!count || !setVisitCount(count)) return false;
+    hasMapMyVisitorsCount = true;
     visitorObserver?.disconnect();
     return true;
   };
 
-  if (visitorTracker && !updateVisitCount()) {
-    visitorObserver = new MutationObserver(updateVisitCount);
+  const startMapMyVisitorsCounter = () => {
+    if (!visitorTracker || updateVisitCountFromMap()) return;
+
+    visitorObserver = new MutationObserver(updateVisitCountFromMap);
     visitorObserver.observe(visitorTracker, {
       childList: true,
       characterData: true,
       subtree: true,
     });
     window.setTimeout(() => visitorObserver?.disconnect(), 20000);
-  }
+  };
+
+  const loadR2Fallback = async () => {
+    if (hasMapMyVisitorsCount) return;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 6000);
+
+    try {
+      const response = await fetch(siteVisitFallbackUrl, {
+        cache: "no-store",
+        signal: controller.signal,
+      });
+
+      if (!response.ok) throw new Error(`R2 counter returned ${response.status}`);
+      const data = await response.json();
+      setVisitCount(data.count);
+    } catch (error) { /* Cached/static count remains available. */ } finally {
+      window.clearTimeout(timeout);
+    }
+  };
+
+  startMapMyVisitorsCounter();
+  window.setTimeout(loadR2Fallback, 3500);
 }
 
 let activePronunciationAudio = null;
