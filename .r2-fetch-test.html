@@ -1,0 +1,14 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>R2 fetch test</title>
+<pre id="result">pending</pre>
+<script>
+fetch("https://pub-7f356cb589ad41c8b97676a5481bfcbb.r2.dev/site-info", { cache: "no-store" })
+  .then(async (response) => {
+    const text = await response.text();
+    document.querySelector("#result").textContent = JSON.stringify({ ok: response.ok, status: response.status, text });
+  })
+  .catch((error) => {
+    document.querySelector("#result").textContent = `ERROR: ${error.name}: ${error.message}`;
+  });
+</script>
