@@ -88,7 +88,6 @@ if (footerShell) {
 
     try {
       const response = await fetch(sitePageviewUrl, {
-        cache: "no-store",
         signal: controller.signal,
       });
 
