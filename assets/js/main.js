@@ -42,7 +42,6 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 
 const footerShell = document.querySelector(".footer-shell");
 const sitePageviewUrl = "https://pub-7f356cb589ad41c8b97676a5481bfcbb.r2.dev/site-info";
-const visitCountBaseline = 36;
 
 if (footerShell) {
   const lastUpdate = document.createElement("p");
@@ -57,30 +56,20 @@ if (footerShell) {
   siteVisits.className = "footer-site-visits";
   siteVisits.textContent = "Pageviews: ";
   const siteVisitCount = document.createElement("span");
-  siteVisitCount.textContent = "—";
+  siteVisitCount.textContent = "";
   siteVisitCount.setAttribute("aria-live", "polite");
   siteVisits.append(siteVisitCount);
 
   footerShell.prepend(lastUpdate);
   footerShell.append(siteVisits);
 
-  const cachedVisitCountKey = "haoran-site-pageview-count";
-
   const setVisitCount = (value) => {
     const numericValue = Number(String(value).replace(/,/g, ""));
     if (!Number.isFinite(numericValue) || numericValue < 0) return false;
 
     siteVisitCount.textContent = new Intl.NumberFormat("en-US").format(numericValue);
-    try { localStorage.setItem(cachedVisitCountKey, String(numericValue)); } catch (error) { /* Storage may be disabled. */ }
     return true;
   };
-
-  setVisitCount(visitCountBaseline);
-
-  try {
-    const cachedVisitCount = localStorage.getItem(cachedVisitCountKey);
-    if (cachedVisitCount !== null) setVisitCount(cachedVisitCount);
-  } catch (error) { /* Storage may be disabled. */ }
 
   const loadR2Pageviews = async () => {
     const controller = new AbortController();
@@ -94,7 +83,7 @@ if (footerShell) {
       if (!response.ok) throw new Error(`R2 counter returned ${response.status}`);
       const data = await response.json();
       setVisitCount(data.count);
-    } catch (error) { /* Cached/static count remains available. */ } finally {
+    } catch (error) { /* Keep the count blank when R2 is unavailable. */ } finally {
       window.clearTimeout(timeout);
     }
   };
