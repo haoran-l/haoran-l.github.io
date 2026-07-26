@@ -600,7 +600,8 @@ html[lang="zh-Hans"] .home h1 {
   border-right: 1px solid var(--line);
 }
 
-.life-journal {
+.life-journal,
+.route-journal {
   padding-top: clamp(1.75rem, 3vw, 2.5rem);
 }
 
@@ -767,7 +768,7 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .route-header {
-  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .route-kicker {
@@ -797,8 +798,8 @@ html[lang="zh-Hans"] .home h1 {
 
 .route-gallery {
   position: relative;
-  width: min(100%, 700px);
-  height: clamp(400px, 38vw, 460px);
+  width: min(100%, 780px);
+  height: clamp(500px, 44vw, 560px);
   overflow: hidden;
   border-radius: 0.8rem;
   background: #171419;
@@ -806,25 +807,25 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 [data-hike-page="victoria-peak"] .route-gallery,
-[data-hike-page="tai-mo-shan"] .route-gallery,
 [data-hike-page="lai-chi-wo"] .route-gallery,
 [data-hike-page="lantau-trail"] .route-gallery,
 [data-hike-page="luk-chau-stone-bushland"] .route-gallery,
 [data-hike-page="pat-sin-leng"] .route-gallery {
-  width: min(100%, 640px);
+  width: min(100%, 750px);
 }
 
 [data-hike-page="lamma-island"] .route-gallery,
 [data-hike-page="ma-on-shan"] .route-gallery {
-  width: min(100%, 600px);
+  width: min(100%, 750px);
 }
 
 [data-hike-page="sai-kung-north"] .route-gallery {
-  width: min(100%, 740px);
+  width: min(100%, 800px);
 }
 
 [data-hike-page="kai-kung-leng"] .route-gallery {
   width: min(100%, 800px);
+  height: clamp(400px, 38vw, 460px);
 }
 
 .route-gallery-track {

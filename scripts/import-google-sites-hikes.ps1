@@ -1,11 +1,13 @@
 param(
-  [string]$OutputDirectory = (Join-Path $PSScriptRoot "..\assets\img\hikes")
+  [string]$OutputDirectory = (Join-Path $PSScriptRoot "..\assets\img\hikes"),
+  [string[]]$OnlyAlbum
 )
 
 $ErrorActionPreference = "Stop"
 
 $albums = [ordered]@{
   "victoria-peak"  = "https://sites.google.com/view/haoran-liu/miscellaneous/victoria-peak?authuser=0"
+  "tai-mo-shan"    = "https://sites.google.com/view/haoran-liu/miscellaneous/tai-mo-shan?authuser=0"
   "lamma-island"   = "https://sites.google.com/view/haoran-liu/miscellaneous/lamma-island?authuser=0"
   "lai-chi-wo"     = "https://sites.google.com/view/haoran-liu/miscellaneous/lai-chi-wo?authuser=0"
   "lantau-trail"   = "https://sites.google.com/view/haoran-liu/miscellaneous/lan-tau-trail?authuser=0"
@@ -19,7 +21,19 @@ $albums = [ordered]@{
 $resolvedOutput = [System.IO.Path]::GetFullPath($OutputDirectory)
 [System.IO.Directory]::CreateDirectory($resolvedOutput) | Out-Null
 
-foreach ($album in $albums.GetEnumerator()) {
+$selectedAlbums = @($albums.GetEnumerator())
+if ($OnlyAlbum) {
+  $unknownAlbums = @($OnlyAlbum | Where-Object { -not $albums.Contains($_) })
+  if ($unknownAlbums.Count -gt 0) {
+    throw "Unknown album slug(s): $($unknownAlbums -join ', ')"
+  }
+
+  $selectedAlbums = @(
+    $albums.GetEnumerator() | Where-Object { $_.Key -in $OnlyAlbum }
+  )
+}
+
+foreach ($album in $selectedAlbums) {
   $html = & curl.exe -sS -fL -A "Mozilla/5.0" $album.Value
   if ($LASTEXITCODE -ne 0) {
     throw "Could not download album page: $($album.Value)"
