@@ -585,16 +585,11 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .trail-journal {
-  display: grid;
-  grid-template-columns: minmax(220px, 250px) minmax(0, 1fr);
-  gap: clamp(3rem, 6vw, 5.5rem);
-  padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
-}
-
-.route-journal {
   width: min(1160px, calc(100% - 3rem));
+  display: grid;
   grid-template-columns: minmax(220px, 240px) minmax(0, 1fr);
   gap: clamp(3rem, 5vw, 4.5rem);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
 }
 
 .trail-sidebar {
@@ -806,6 +801,12 @@ html[lang="zh-Hans"] .home h1 {
   border-radius: 0.8rem;
   background: #171419;
   box-shadow: var(--shadow);
+}
+
+@media (min-width: 1208px) {
+  .route-journal .route-gallery {
+    width: calc(100% + 50vw - 604px);
+  }
 }
 
 .route-gallery-track {
