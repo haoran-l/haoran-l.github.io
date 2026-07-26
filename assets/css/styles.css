@@ -591,6 +591,12 @@ html[lang="zh-Hans"] .home h1 {
   padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
 }
 
+.route-journal {
+  width: min(1160px, calc(100% - 3rem));
+  grid-template-columns: minmax(220px, 240px) minmax(0, 1fr);
+  gap: clamp(3rem, 5vw, 4.5rem);
+}
+
 .trail-sidebar {
   position: static;
   min-width: 0;
