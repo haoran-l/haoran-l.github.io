@@ -661,6 +661,10 @@ html[lang="zh-Hans"] .home h1 {
   line-height: 1.22;
 }
 
+.trail-index a[href*="luk-chau-stone-bushland"] strong {
+  white-space: nowrap;
+}
+
 .trail-index small {
   margin-top: 0.22rem;
   color: var(--muted);
@@ -793,13 +797,14 @@ html[lang="zh-Hans"] .home h1 {
   margin: 0.65rem 0 0;
   color: var(--muted);
   font-family: "KaiTi", "STKaiti", "Kaiti SC", "Noto Serif SC", serif;
-  font-size: 1.2rem;
+  font-size: clamp(1.38rem, 2vw, 1.55rem);
+  font-weight: 700;
 }
 
 .route-gallery {
   position: relative;
   width: min(100%, 780px);
-  height: clamp(500px, 44vw, 560px);
+  height: clamp(600px, 52.8vw, 672px);
   overflow: hidden;
   border-radius: 0.8rem;
   background: #171419;
@@ -826,7 +831,29 @@ html[lang="zh-Hans"] .home h1 {
 [data-hike-page="tai-mo-shan"] .route-gallery,
 [data-hike-page="kai-kung-leng"] .route-gallery {
   width: min(100%, 800px);
-  height: clamp(400px, 38vw, 460px);
+  height: clamp(480px, 45.6vw, 552px);
+}
+
+@media (min-width: 1208px) {
+  .route-gallery {
+    width: min(936px, calc(100% + 50vw - 604px));
+  }
+
+  [data-hike-page="victoria-peak"] .route-gallery,
+  [data-hike-page="lai-chi-wo"] .route-gallery,
+  [data-hike-page="lantau-trail"] .route-gallery,
+  [data-hike-page="luk-chau-stone-bushland"] .route-gallery,
+  [data-hike-page="pat-sin-leng"] .route-gallery,
+  [data-hike-page="lamma-island"] .route-gallery,
+  [data-hike-page="ma-on-shan"] .route-gallery {
+    width: min(900px, calc(100% + 50vw - 604px));
+  }
+
+  [data-hike-page="sai-kung-north"] .route-gallery,
+  [data-hike-page="tai-mo-shan"] .route-gallery,
+  [data-hike-page="kai-kung-leng"] .route-gallery {
+    width: min(960px, calc(100% + 50vw - 604px));
+  }
 }
 
 .route-gallery-track {
