@@ -13,7 +13,7 @@
     { slug: "tai-to-yan", name: "Tai To Yan", zh: "大刀屻", images: ["tai-to-yan-04.jpg", "tai-to-yan.jpg", "tai-to-yan-02.jpg", "tai-to-yan-03.jpg", "tai-to-yan-05.jpg", "tai-to-yan-06.jpg", "tai-to-yan-07.jpg", "tai-to-yan-08.jpg", "tai-to-yan-09.jpg"], alt: "Woodland and mountain scenery at Tai To Yan", note: "A shaded woodland path between the ridgelines." },
     { slug: "kai-kung-leng", name: "Kai Kung Leng", zh: "雞公嶺", images: ["kai-kung-leng.jpg", "kai-kung-leng-02.jpg", "kai-kung-leng-03.jpg", "kai-kung-leng-04.jpg", "kai-kung-leng-05.jpg", "kai-kung-leng-06.jpg", "kai-kung-leng-07.jpg", "kai-kung-leng-08.jpg", "kai-kung-leng-09.jpg", "kai-kung-leng-10.jpg", "kai-kung-leng-11.jpg"], alt: "Open ridgelines and mountain scenery at Kai Kung Leng", note: "Long, open ridgelines with broad views across Hong Kong's northern landscape." }
   ];
-  const pageVersion = "20260726-8";
+  const pageVersion = "20260726-10";
   const assetVersion = "20260726-8";
   const routeHref = (route) => `${route.slug}.html?v=${pageVersion}`;
 
