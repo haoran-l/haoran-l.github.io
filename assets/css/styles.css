@@ -103,7 +103,6 @@ img {
   backdrop-filter: blur(14px);
 }
 
-.nav-shell,
 .page-shell,
 .footer-shell {
   width: min(1060px, calc(100% - 3rem));
@@ -111,6 +110,9 @@ img {
 }
 
 .nav-shell {
+  width: calc(100% - 3rem);
+  max-width: none;
+  margin: 0 auto;
   min-height: 66px;
   display: flex;
   align-items: center;
@@ -129,11 +131,13 @@ img {
   font-weight: 600;
   letter-spacing: -0.02em;
   text-decoration: none;
+  padding-left: 111px;
 }
 
 .brand-marks {
   position: absolute;
-  right: calc(100% + 0.9rem);
+  right: auto;
+  left: 0;
   width: 96px;
   height: auto;
   max-width: none;
@@ -232,7 +236,7 @@ img {
 .campus-banner {
   position: relative;
   width: 100%;
-  height: clamp(280px, 22vw, 350px);
+  height: clamp(190px, 15vw, 235px);
   margin: 0;
   overflow: hidden;
   border: 0;
@@ -241,6 +245,22 @@ img {
   background-position: center, center 48%;
   background-size: cover;
   box-shadow: none;
+}
+
+.campus-banner-title {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding-top: 2.25rem;
+  color: #fff;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 4.8rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.46);
 }
 
 .has-campus-banner .home {
@@ -255,20 +275,6 @@ img {
   color: #fff;
   background: linear-gradient(rgba(12, 14, 20, 0.38), rgba(12, 14, 20, 0.08));
   backdrop-filter: none;
-}
-
-.has-campus-banner .nav-shell {
-  width: calc(100% - 3rem);
-  max-width: none;
-}
-
-.has-campus-banner .brand {
-  padding-left: 111px;
-}
-
-.has-campus-banner .brand-marks {
-  right: auto;
-  left: 0;
 }
 
 .has-campus-banner .brand,
@@ -615,6 +621,10 @@ html[lang="zh-Hans"] .home h1 {
   justify-content: space-between;
   gap: 2rem;
   margin-bottom: 1.4rem;
+}
+
+.cv-heading-actions {
+  justify-content: flex-end;
 }
 
 .cv-heading h1 {
@@ -1142,7 +1152,7 @@ html[lang="zh-Hans"] .home h1 {
     display: none;
   }
 
-  .has-campus-banner .brand {
+  .brand {
     padding-left: 0;
   }
 }
@@ -1156,10 +1166,6 @@ html[lang="zh-Hans"] .home h1 {
 
   .nav-shell {
     gap: 0.7rem;
-  }
-
-  .has-campus-banner .nav-shell {
-    width: calc(100% - 2rem);
   }
 
   .nav-actions {
@@ -1191,7 +1197,7 @@ html[lang="zh-Hans"] .home h1 {
 
   .campus-banner {
     width: 100%;
-    height: 280px;
+    height: 190px;
     margin: 0;
     border-radius: 0;
     background-position: center, 48% 50%;
