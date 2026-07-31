@@ -11,6 +11,8 @@
   --surface: rgba(255, 255, 255, 0.66);
   --header-bg: rgba(242, 242, 240, 0.9);
   --portrait-bg: #e2e2de;
+  --profile-link: #596672;
+  --profile-link-hover: #293944;
   --shadow: 0 20px 55px rgba(42, 43, 39, 0.09);
   --banner-overlay: linear-gradient(rgba(20, 24, 34, 0.46), rgba(20, 24, 34, 0.54));
   --serif: "Newsreader", "Noto Serif SC", Georgia, serif;
@@ -26,6 +28,8 @@
   --surface: rgba(255, 253, 248, 0.58);
   --header-bg: rgba(245, 241, 232, 0.9);
   --portrait-bg: #e2dbcf;
+  --profile-link: #694b60;
+  --profile-link-hover: #4c3048;
   --shadow: 0 20px 55px rgba(54, 43, 34, 0.12);
   --banner-overlay: linear-gradient(rgba(28, 25, 22, 0.44), rgba(28, 25, 22, 0.52));
 }
@@ -35,12 +39,14 @@
   --paper: #1d1a1e;
   --ink: #f2eee7;
   --muted: #b9b0a7;
-  --plum: #d2a7cf;
-  --plum-dark: #eccfeb;
+  --plum: #ad8eab;
+  --plum-dark: #c3a9c1;
   --line: rgba(242, 238, 231, 0.16);
   --surface: rgba(255, 255, 255, 0.055);
   --header-bg: rgba(29, 26, 30, 0.9);
   --portrait-bg: #312c32;
+  --profile-link: #aab0b9;
+  --profile-link-hover: #c4c9d0;
   --shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
   --banner-overlay: linear-gradient(rgba(10, 9, 12, 0.56), rgba(10, 9, 12, 0.64));
 }
@@ -181,44 +187,31 @@ img {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 0.35rem;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
   color: var(--muted);
-  background: transparent;
+  background: var(--surface);
   align-self: center;
-  box-shadow: none;
+  box-shadow: 0 4px 16px rgba(40, 39, 36, 0.05);
 }
 
 .theme-choice {
-  position: relative;
-  width: 22px;
+  width: 28px;
   height: 28px;
   display: inline-grid;
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 50%;
   color: var(--muted);
   background: transparent;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   line-height: 0;
-  transition: color 150ms ease, opacity 150ms ease;
-}
-
-.theme-choice::after {
-  position: absolute;
-  right: 50%;
-  bottom: 0;
-  width: 0;
-  height: 1px;
-  content: "";
-  background: currentColor;
-  transform: translateX(50%);
-  transition: width 150ms ease;
+  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
 }
 
 .theme-icon {
@@ -237,17 +230,13 @@ img {
 
 .theme-choice[aria-pressed="true"] {
   color: var(--plum-dark);
-  background: transparent;
-  box-shadow: none;
-}
-
-.theme-choice[aria-pressed="true"]::after {
-  width: 12px;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 2px 8px rgba(40, 39, 36, 0.12);
 }
 
 :root[data-theme="dark"] .theme-choice[aria-pressed="true"] {
   color: var(--plum-dark);
-  background: transparent;
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .campus-banner {
@@ -307,8 +296,8 @@ img {
 
 .has-campus-banner .theme-switch {
   color: rgba(255, 255, 255, 0.86);
-  border-color: transparent;
-  background: transparent;
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(16, 18, 25, 0.24);
   box-shadow: none;
 }
 
@@ -320,7 +309,7 @@ img {
 .has-campus-banner .theme-choice[aria-pressed="true"],
 :root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"] {
   color: #fff;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .journal-banner {
@@ -504,28 +493,28 @@ html[lang="zh-Hans"] .home h1 {
 .profile-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.65rem;
+  gap: 1.05rem;
   margin-top: 1.45rem;
 }
 
 .profile-links a {
-  width: 48px;
-  height: 48px;
+  width: 30px;
+  height: 32px;
   display: inline-grid;
   place-items: center;
-  border: 1px solid rgba(90, 52, 88, 0.25);
-  border-radius: 50%;
-  color: var(--plum);
-  background: rgba(255, 253, 248, 0.62);
-  font-size: 1.28rem;
+  border: 0;
+  border-radius: 0;
+  color: var(--profile-link);
+  background: transparent;
+  font-size: 1.38rem;
   line-height: 1;
   text-decoration: none;
   transition: color 150ms ease, background 150ms ease, transform 150ms ease;
 }
 
 .profile-links .ssrn-link {
-  width: 64px;
-  border-radius: 999px;
+  width: 48px;
+  border-radius: 0;
 }
 
 .ssrn-mark {
@@ -536,9 +525,9 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .profile-links a:hover {
-  color: #fff;
-  background: var(--plum);
-  transform: translateY(-2px);
+  color: var(--profile-link-hover);
+  background: transparent;
+  transform: translateY(-1px);
 }
 
 .visually-hidden {
@@ -1284,13 +1273,13 @@ html[lang="zh-Hans"] .home h1 {
   }
 
   .theme-switch {
-    gap: 0.28rem;
-    padding: 0;
+    gap: 1px;
+    padding: 2px;
   }
 
   .theme-choice {
-    width: 21px;
-    height: 26px;
+    width: 25px;
+    height: 25px;
   }
 
   .theme-icon {
