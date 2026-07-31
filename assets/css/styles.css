@@ -1200,7 +1200,16 @@ html[lang="zh-Hans"] .home h1 {
   justify-content: flex-start;
   margin: 0 auto;
   padding: 0.65rem 0 0.1rem;
+  font-family: "Crimson Pro", "Newsreader", Georgia, serif;
+  font-size: 0.9rem;
+  letter-spacing: 0;
+  line-height: 1.35;
   text-align: left;
+}
+
+.footer-pronunciation .pronunciation-label,
+.footer-pronunciation .pronunciation-item strong {
+  font-weight: 400;
 }
 
 .footer-shell {
@@ -1362,6 +1371,10 @@ html[lang="zh-Hans"] .home h1 {
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
     gap: 0.45rem;
+    font-size: 0.82rem;
+  }
+
+  .footer-pronunciation {
     font-size: 0.82rem;
   }
 
