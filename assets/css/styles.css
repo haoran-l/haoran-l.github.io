@@ -498,27 +498,27 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .profile-links a {
-  width: 30px;
-  height: 32px;
+  width: 34px;
+  height: 36px;
   display: inline-grid;
   place-items: center;
   border: 0;
   border-radius: 0;
   color: var(--profile-link);
   background: transparent;
-  font-size: 1.38rem;
+  font-size: 1.55rem;
   line-height: 1;
   text-decoration: none;
   transition: color 150ms ease, background 150ms ease, transform 150ms ease;
 }
 
 .profile-links .ssrn-link {
-  width: 48px;
+  width: 54px;
   border-radius: 0;
 }
 
 .ssrn-mark {
-  font-size: 1.8rem;
+  font-size: 2rem;
   line-height: 1;
   transform: scaleX(1.3);
   transform-origin: center;
