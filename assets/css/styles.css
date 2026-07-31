@@ -181,31 +181,44 @@ img {
   display: inline-flex;
   flex: 0 0 auto;
   align-items: center;
-  gap: 2px;
-  padding: 3px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
+  gap: 0.35rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
   color: var(--muted);
-  background: var(--surface);
+  background: transparent;
   align-self: center;
-  box-shadow: 0 4px 16px rgba(40, 39, 36, 0.05);
+  box-shadow: none;
 }
 
 .theme-choice {
-  width: 28px;
+  position: relative;
+  width: 22px;
   height: 28px;
   display: inline-grid;
   place-items: center;
   padding: 0;
   border: 0;
-  border-radius: 50%;
+  border-radius: 0;
   color: var(--muted);
   background: transparent;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   line-height: 0;
-  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+  transition: color 150ms ease, opacity 150ms ease;
+}
+
+.theme-choice::after {
+  position: absolute;
+  right: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  content: "";
+  background: currentColor;
+  transform: translateX(50%);
+  transition: width 150ms ease;
 }
 
 .theme-icon {
@@ -224,13 +237,17 @@ img {
 
 .theme-choice[aria-pressed="true"] {
   color: var(--plum-dark);
-  background: rgba(255, 255, 255, 0.62);
-  box-shadow: 0 2px 8px rgba(40, 39, 36, 0.12);
+  background: transparent;
+  box-shadow: none;
+}
+
+.theme-choice[aria-pressed="true"]::after {
+  width: 12px;
 }
 
 :root[data-theme="dark"] .theme-choice[aria-pressed="true"] {
   color: var(--plum-dark);
-  background: rgba(255, 255, 255, 0.12);
+  background: transparent;
 }
 
 .campus-banner {
@@ -290,8 +307,8 @@ img {
 
 .has-campus-banner .theme-switch {
   color: rgba(255, 255, 255, 0.86);
-  border-color: rgba(255, 255, 255, 0.28);
-  background: rgba(16, 18, 25, 0.24);
+  border-color: transparent;
+  background: transparent;
   box-shadow: none;
 }
 
@@ -303,7 +320,7 @@ img {
 .has-campus-banner .theme-choice[aria-pressed="true"],
 :root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"] {
   color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  background: transparent;
 }
 
 .journal-banner {
@@ -1267,13 +1284,13 @@ html[lang="zh-Hans"] .home h1 {
   }
 
   .theme-switch {
-    gap: 1px;
-    padding: 2px;
+    gap: 0.28rem;
+    padding: 0;
   }
 
   .theme-choice {
-    width: 25px;
-    height: 25px;
+    width: 21px;
+    height: 26px;
   }
 
   .theme-icon {
