@@ -277,31 +277,49 @@ img {
   backdrop-filter: none;
 }
 
+.has-campus-strip .site-header {
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background-image: var(--banner-overlay), url("../img/cuhk-campus-banner.jpg");
+  background-position: center, center 48%;
+  background-size: cover;
+  backdrop-filter: none;
+}
+
 .has-campus-banner .brand,
-.has-campus-banner .nav-links a {
+.has-campus-banner .nav-links a,
+.has-campus-strip .brand,
+.has-campus-strip .nav-links a {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.38);
 }
 
 .has-campus-banner .nav-links a:hover,
-.has-campus-banner .nav-links a[aria-current="page"] {
+.has-campus-banner .nav-links a[aria-current="page"],
+.has-campus-strip .nav-links a:hover,
+.has-campus-strip .nav-links a[aria-current="page"] {
   color: #fff;
 }
 
-.has-campus-banner .theme-switch {
+.has-campus-banner .theme-switch,
+.has-campus-strip .theme-switch {
   color: rgba(255, 255, 255, 0.86);
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(16, 18, 25, 0.24);
   box-shadow: none;
 }
 
-.has-campus-banner .theme-choice {
+.has-campus-banner .theme-choice,
+.has-campus-strip .theme-choice {
   color: rgba(255, 255, 255, 0.78);
 }
 
 .has-campus-banner .theme-choice:hover,
 .has-campus-banner .theme-choice[aria-pressed="true"],
-:root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"] {
+:root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"],
+.has-campus-strip .theme-choice:hover,
+.has-campus-strip .theme-choice[aria-pressed="true"],
+:root[data-theme="dark"] .has-campus-strip .theme-choice[aria-pressed="true"] {
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
 }
