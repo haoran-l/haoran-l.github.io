@@ -34,7 +34,7 @@ const setTheme = (theme) => {
 
   const metaThemeColor = document.querySelector('meta[name="theme-color"]');
   if (metaThemeColor) {
-    metaThemeColor.content = selectedTheme === "dark" ? "#1d1a1e" : selectedTheme === "comfort" ? "#f5f1e8" : "#e8e8e5";
+    metaThemeColor.content = selectedTheme === "dark" ? "#1d1a1e" : selectedTheme === "comfort" ? "#f5f1e8" : "#f2f2f0";
   }
 };
 

@@ -2,17 +2,17 @@
 
 :root {
   color-scheme: light;
-  --paper: #e8e8e5;
+  --paper: #f2f2f0;
   --ink: #242522;
-  --muted: #62635f;
+  --muted: #666762;
   --plum: #5a3458;
   --plum-dark: #40243e;
-  --line: rgba(36, 37, 34, 0.15);
-  --surface: rgba(255, 255, 253, 0.48);
-  --header-bg: rgba(232, 232, 229, 0.9);
-  --portrait-bg: #d7d7d2;
-  --shadow: 0 20px 55px rgba(42, 43, 39, 0.12);
-  --banner-overlay: linear-gradient(90deg, rgba(39, 38, 42, 0.14), rgba(232, 232, 229, 0.03) 48%, rgba(39, 38, 42, 0.18));
+  --line: rgba(36, 37, 34, 0.13);
+  --surface: rgba(255, 255, 255, 0.66);
+  --header-bg: rgba(242, 242, 240, 0.9);
+  --portrait-bg: #e2e2de;
+  --shadow: 0 20px 55px rgba(42, 43, 39, 0.09);
+  --banner-overlay: linear-gradient(rgba(20, 24, 34, 0.46), rgba(20, 24, 34, 0.54));
   --serif: "Newsreader", "Noto Serif SC", Georgia, serif;
   --sans: "Manrope", "Noto Sans SC", "Segoe UI", sans-serif;
 }
@@ -27,7 +27,7 @@
   --header-bg: rgba(245, 241, 232, 0.9);
   --portrait-bg: #e2dbcf;
   --shadow: 0 20px 55px rgba(54, 43, 34, 0.12);
-  --banner-overlay: linear-gradient(90deg, rgba(54, 43, 34, 0.16), rgba(245, 241, 232, 0.02) 48%, rgba(54, 43, 34, 0.2));
+  --banner-overlay: linear-gradient(rgba(28, 25, 22, 0.44), rgba(28, 25, 22, 0.52));
 }
 
 :root[data-theme="dark"] {
@@ -42,7 +42,7 @@
   --header-bg: rgba(29, 26, 30, 0.9);
   --portrait-bg: #312c32;
   --shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
-  --banner-overlay: linear-gradient(90deg, rgba(16, 14, 18, 0.5), rgba(29, 26, 30, 0.16) 48%, rgba(16, 14, 18, 0.58));
+  --banner-overlay: linear-gradient(rgba(10, 9, 12, 0.56), rgba(10, 9, 12, 0.64));
 }
 
 * {
@@ -231,20 +231,73 @@ img {
 
 .campus-banner {
   position: relative;
-  width: min(1180px, calc(100% - 2rem));
-  height: clamp(150px, 14vw, 220px);
-  margin: clamp(1rem, 2.5vw, 1.75rem) auto 0;
+  width: 100%;
+  height: clamp(280px, 22vw, 350px);
+  margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 0.85rem;
+  border: 0;
+  border-radius: 0;
   background-image: var(--banner-overlay), url("../img/cuhk-campus-banner.jpg");
   background-position: center, center 48%;
   background-size: cover;
-  box-shadow: var(--shadow);
+  box-shadow: none;
 }
 
 .has-campus-banner .home {
-  padding-top: clamp(2rem, 4vh, 3rem);
+  padding-top: clamp(2.5rem, 5vh, 3.75rem);
+}
+
+.has-campus-banner .site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 10;
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  background: linear-gradient(rgba(12, 14, 20, 0.38), rgba(12, 14, 20, 0.08));
+  backdrop-filter: none;
+}
+
+.has-campus-banner .nav-shell {
+  width: calc(100% - 3rem);
+  max-width: none;
+}
+
+.has-campus-banner .brand {
+  padding-left: 111px;
+}
+
+.has-campus-banner .brand-marks {
+  right: auto;
+  left: 0;
+}
+
+.has-campus-banner .brand,
+.has-campus-banner .nav-links a {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.38);
+}
+
+.has-campus-banner .nav-links a:hover,
+.has-campus-banner .nav-links a[aria-current="page"] {
+  color: #fff;
+}
+
+.has-campus-banner .theme-switch {
+  color: rgba(255, 255, 255, 0.86);
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(16, 18, 25, 0.24);
+  box-shadow: none;
+}
+
+.has-campus-banner .theme-choice {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.has-campus-banner .theme-choice:hover,
+.has-campus-banner .theme-choice[aria-pressed="true"],
+:root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"] {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .home {
@@ -1088,6 +1141,10 @@ html[lang="zh-Hans"] .home h1 {
   .brand-marks {
     display: none;
   }
+
+  .has-campus-banner .brand {
+    padding-left: 0;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1099,6 +1156,10 @@ html[lang="zh-Hans"] .home h1 {
 
   .nav-shell {
     gap: 0.7rem;
+  }
+
+  .has-campus-banner .nav-shell {
+    width: calc(100% - 2rem);
   }
 
   .nav-actions {
@@ -1129,10 +1190,11 @@ html[lang="zh-Hans"] .home h1 {
   }
 
   .campus-banner {
-    width: calc(100% - 1.25rem);
-    height: 145px;
-    margin-top: 0.65rem;
-    border-radius: 0.65rem;
+    width: 100%;
+    height: 280px;
+    margin: 0;
+    border-radius: 0;
+    background-position: center, 48% 50%;
   }
 
   .home {
