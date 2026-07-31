@@ -307,7 +307,7 @@ img {
 }
 
 .journal-banner {
-  height: clamp(230px, 18vw, 285px);
+  height: clamp(190px, 15vw, 235px);
 }
 
 .journal-banner-copy {
@@ -317,7 +317,7 @@ img {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3.75rem 1.5rem 0;
+  padding: 3.25rem 1.5rem 0;
   color: #fff;
   text-align: center;
   text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
@@ -681,6 +681,18 @@ html[lang="zh-Hans"] .home h1 {
   justify-content: flex-end;
 }
 
+.cv-frame-layout {
+  position: relative;
+}
+
+.cv-frame-layout > .cv-open {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 1.15rem);
+  z-index: 2;
+  white-space: nowrap;
+}
+
 .cv-heading h1 {
   margin: 0;
   font-family: var(--serif);
@@ -708,6 +720,18 @@ html[lang="zh-Hans"] .home h1 {
 .cv-open:hover {
   color: #fff;
   background: var(--plum-dark);
+}
+
+@media (max-width: 1500px) and (min-width: 761px) {
+  .cv-page {
+    padding-top: 4rem;
+  }
+
+  .cv-frame-layout > .cv-open {
+    top: -3rem;
+    right: 0;
+    left: auto;
+  }
 }
 
 .cv-frame-shell {
@@ -1265,17 +1289,27 @@ html[lang="zh-Hans"] .home h1 {
     background-position: center, 48% 50%;
   }
 
-  .journal-banner {
-    height: 245px;
+  .journal-banner-copy {
+    padding: 5.1rem 0.75rem 0;
   }
 
-  .journal-banner-copy {
-    padding: 4.75rem 1rem 0;
+  .journal-banner-title {
+    font-size: clamp(2.35rem, 11vw, 3rem);
   }
 
   .journal-banner-title.is-long {
-    font-size: clamp(2.1rem, 10vw, 2.55rem);
-    line-height: 0.98;
+    font-size: clamp(1.75rem, 8vw, 2.1rem);
+    line-height: 0.94;
+  }
+
+  .journal-banner-kicker {
+    margin-bottom: 0.22rem;
+    font-size: 0.62rem;
+  }
+
+  .journal-banner-title-zh {
+    margin-top: 0.32rem;
+    font-size: 1.18rem;
   }
 
   .home {
@@ -1319,6 +1353,17 @@ html[lang="zh-Hans"] .home h1 {
   .cv-page {
     width: min(100% - 1rem, 1180px);
     padding-top: 1rem;
+  }
+
+  .cv-frame-layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-frame-layout > .cv-open {
+    position: static;
+    align-self: flex-end;
+    margin-bottom: 0.75rem;
   }
 
   .cv-heading {
