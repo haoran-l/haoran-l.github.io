@@ -1212,6 +1212,13 @@ html[lang="zh-Hans"] .home h1 {
   font-weight: 400;
 }
 
+.footer-pronunciation .pronunciation-play {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin-left: 0.08rem;
+  font-size: 0.58rem;
+}
+
 .footer-shell {
   min-height: 44px;
   display: grid;
