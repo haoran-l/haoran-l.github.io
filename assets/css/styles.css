@@ -1195,6 +1195,14 @@ html[lang="zh-Hans"] .home h1 {
   border-top: 1px solid var(--line);
 }
 
+.footer-pronunciation {
+  width: min(1060px, calc(100% - 3rem));
+  justify-content: flex-start;
+  margin: 0 auto;
+  padding: 0.65rem 0 0.1rem;
+  text-align: left;
+}
+
 .footer-shell {
   min-height: 44px;
   display: grid;
@@ -1252,7 +1260,8 @@ html[lang="zh-Hans"] .home h1 {
 @media (max-width: 760px) {
   .nav-shell,
   .page-shell,
-  .footer-shell {
+  .footer-shell,
+  .footer-pronunciation {
     width: min(100% - 2rem, 1060px);
   }
 
