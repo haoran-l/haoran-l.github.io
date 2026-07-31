@@ -277,51 +277,87 @@ img {
   backdrop-filter: none;
 }
 
-.has-campus-strip .site-header {
-  border-bottom-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
-  background-image: var(--banner-overlay), url("../img/cuhk-campus-banner.jpg");
-  background-position: center, center 48%;
-  background-size: cover;
-  backdrop-filter: none;
-}
-
 .has-campus-banner .brand,
-.has-campus-banner .nav-links a,
-.has-campus-strip .brand,
-.has-campus-strip .nav-links a {
+.has-campus-banner .nav-links a {
   color: rgba(255, 255, 255, 0.9);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.38);
 }
 
 .has-campus-banner .nav-links a:hover,
-.has-campus-banner .nav-links a[aria-current="page"],
-.has-campus-strip .nav-links a:hover,
-.has-campus-strip .nav-links a[aria-current="page"] {
+.has-campus-banner .nav-links a[aria-current="page"] {
   color: #fff;
 }
 
-.has-campus-banner .theme-switch,
-.has-campus-strip .theme-switch {
+.has-campus-banner .theme-switch {
   color: rgba(255, 255, 255, 0.86);
   border-color: rgba(255, 255, 255, 0.28);
   background: rgba(16, 18, 25, 0.24);
   box-shadow: none;
 }
 
-.has-campus-banner .theme-choice,
-.has-campus-strip .theme-choice {
+.has-campus-banner .theme-choice {
   color: rgba(255, 255, 255, 0.78);
 }
 
 .has-campus-banner .theme-choice:hover,
 .has-campus-banner .theme-choice[aria-pressed="true"],
-:root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"],
-.has-campus-strip .theme-choice:hover,
-.has-campus-strip .theme-choice[aria-pressed="true"],
-:root[data-theme="dark"] .has-campus-strip .theme-choice[aria-pressed="true"] {
+:root[data-theme="dark"] .has-campus-banner .theme-choice[aria-pressed="true"] {
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
+}
+
+.journal-banner {
+  height: clamp(230px, 18vw, 285px);
+}
+
+.journal-banner-copy {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.75rem 1.5rem 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.5);
+}
+
+.journal-banner-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.journal-banner-subtitle {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.journal-banner-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 4.55rem);
+  font-weight: 560;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+}
+
+.journal-banner-title.is-long {
+  font-size: clamp(2.55rem, 4.3vw, 3.9rem);
+}
+
+.journal-banner-title-zh {
+  margin: 0.5rem 0 0;
+  font-family: "KaiTi", "STKaiti", "Kaiti SC", "Noto Serif SC", serif;
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: 700;
+  line-height: 1;
 }
 
 .home {
@@ -798,6 +834,10 @@ html[lang="zh-Hans"] .home h1 {
   max-width: 720px;
 }
 
+.journal-page .life-lede {
+  margin-top: 0;
+}
+
 .life-intro .eyebrow {
   font-size: 0.82rem;
   letter-spacing: 0.11em;
@@ -1219,6 +1259,19 @@ html[lang="zh-Hans"] .home h1 {
     margin: 0;
     border-radius: 0;
     background-position: center, 48% 50%;
+  }
+
+  .journal-banner {
+    height: 245px;
+  }
+
+  .journal-banner-copy {
+    padding: 4.75rem 1rem 0;
+  }
+
+  .journal-banner-title.is-long {
+    font-size: clamp(2.1rem, 10vw, 2.55rem);
+    line-height: 0.98;
   }
 
   .home {
