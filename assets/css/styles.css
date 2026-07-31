@@ -2,18 +2,32 @@
 
 :root {
   color-scheme: light;
+  --paper: #e8e8e5;
+  --ink: #242522;
+  --muted: #62635f;
+  --plum: #5a3458;
+  --plum-dark: #40243e;
+  --line: rgba(36, 37, 34, 0.15);
+  --surface: rgba(255, 255, 253, 0.48);
+  --header-bg: rgba(232, 232, 229, 0.9);
+  --portrait-bg: #d7d7d2;
+  --shadow: 0 20px 55px rgba(42, 43, 39, 0.12);
+  --banner-overlay: linear-gradient(90deg, rgba(39, 38, 42, 0.14), rgba(232, 232, 229, 0.03) 48%, rgba(39, 38, 42, 0.18));
+  --serif: "Newsreader", "Noto Serif SC", Georgia, serif;
+  --sans: "Manrope", "Noto Sans SC", "Segoe UI", sans-serif;
+}
+
+:root[data-theme="comfort"] {
+  color-scheme: light;
   --paper: #f5f1e8;
   --ink: #25231f;
   --muted: #6c665e;
-  --plum: #5a3458;
-  --plum-dark: #40243e;
   --line: rgba(37, 35, 31, 0.16);
   --surface: rgba(255, 253, 248, 0.58);
   --header-bg: rgba(245, 241, 232, 0.9);
   --portrait-bg: #e2dbcf;
   --shadow: 0 20px 55px rgba(54, 43, 34, 0.12);
-  --serif: "Newsreader", "Noto Serif SC", Georgia, serif;
-  --sans: "Manrope", "Noto Sans SC", "Segoe UI", sans-serif;
+  --banner-overlay: linear-gradient(90deg, rgba(54, 43, 34, 0.16), rgba(245, 241, 232, 0.02) 48%, rgba(54, 43, 34, 0.2));
 }
 
 :root[data-theme="dark"] {
@@ -28,22 +42,7 @@
   --header-bg: rgba(29, 26, 30, 0.9);
   --portrait-bg: #312c32;
   --shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --paper: #1d1a1e;
-    --ink: #f2eee7;
-    --muted: #b9b0a7;
-    --plum: #d2a7cf;
-    --plum-dark: #eccfeb;
-    --line: rgba(242, 238, 231, 0.16);
-    --surface: rgba(255, 255, 255, 0.055);
-    --header-bg: rgba(29, 26, 30, 0.9);
-    --portrait-bg: #312c32;
-    --shadow: 0 20px 55px rgba(0, 0, 0, 0.3);
-  }
+  --banner-overlay: linear-gradient(90deg, rgba(16, 14, 18, 0.5), rgba(29, 26, 30, 0.16) 48%, rgba(16, 14, 18, 0.58));
 }
 
 * {
@@ -171,25 +170,38 @@ img {
 }
 
 .theme-toggle {
-  width: 36px;
-  height: 36px;
-  display: inline-grid;
+  display: none;
+}
+
+.theme-switch {
+  display: inline-flex;
   flex: 0 0 auto;
-  place-items: center;
-  padding: 0;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
   border: 1px solid var(--line);
-  border-radius: 50%;
+  border-radius: 999px;
   color: var(--muted);
   background: var(--surface);
+  align-self: center;
+  box-shadow: 0 4px 16px rgba(40, 39, 36, 0.05);
+}
+
+.theme-choice {
+  width: 28px;
+  height: 28px;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--muted);
+  background: transparent;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
-  align-self: center;
   line-height: 0;
-}
-
-.theme-toggle[hidden] {
-  display: none;
+  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
 }
 
 .theme-icon {
@@ -202,21 +214,37 @@ img {
   stroke-linejoin: round;
 }
 
-.theme-icon-sun {
-  display: none;
-}
-
-.theme-toggle.is-dark .theme-icon-moon {
-  display: none;
-}
-
-.theme-toggle.is-dark .theme-icon-sun {
-  display: block;
-}
-
-.theme-toggle:hover {
+.theme-choice:hover {
   color: var(--plum);
-  border-color: rgba(90, 52, 88, 0.35);
+}
+
+.theme-choice[aria-pressed="true"] {
+  color: var(--plum-dark);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 2px 8px rgba(40, 39, 36, 0.12);
+}
+
+:root[data-theme="dark"] .theme-choice[aria-pressed="true"] {
+  color: var(--plum-dark);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.campus-banner {
+  position: relative;
+  width: min(1180px, calc(100% - 2rem));
+  height: clamp(150px, 14vw, 220px);
+  margin: clamp(1rem, 2.5vw, 1.75rem) auto 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 0.85rem;
+  background-image: var(--banner-overlay), url("../img/cuhk-campus-banner.jpg");
+  background-position: center, center 48%;
+  background-size: cover;
+  box-shadow: var(--shadow);
+}
+
+.has-campus-banner .home {
+  padding-top: clamp(2rem, 4vh, 3rem);
 }
 
 .home {
@@ -1085,9 +1113,26 @@ html[lang="zh-Hans"] .home h1 {
     font-size: 0.82rem;
   }
 
-  .theme-toggle {
-    width: 32px;
-    height: 32px;
+  .theme-switch {
+    gap: 1px;
+    padding: 2px;
+  }
+
+  .theme-choice {
+    width: 25px;
+    height: 25px;
+  }
+
+  .theme-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .campus-banner {
+    width: calc(100% - 1.25rem);
+    height: 145px;
+    margin-top: 0.65rem;
+    border-radius: 0.65rem;
   }
 
   .home {

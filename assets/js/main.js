@@ -8,32 +8,56 @@ document.querySelectorAll("[data-profile-image]").forEach((image) => {
 
 const root = document.documentElement;
 const themeToggle = document.querySelector(".theme-toggle");
-const systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
+const themeOptions = ["default", "comfort", "dark"];
+const activeTheme = () => themeOptions.includes(root.dataset.theme) ? root.dataset.theme : "default";
 
-const activeTheme = () => root.dataset.theme || (systemTheme.matches ? "dark" : "light");
+const themeIcons = {
+  default: '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16Z" fill="currentColor" stroke="none" opacity=".45"/></svg>',
+  comfort: '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  dark: '<svg class="theme-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.2 8.2 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"/></svg>',
+};
 
-const updateThemeControl = () => {
-  if (!themeToggle) return;
-  const isDark = activeTheme() === "dark";
-  const isChinese = document.documentElement.lang.startsWith("zh");
-  const label = isChinese
-    ? (isDark ? "切换至日间模式" : "切换至夜间模式")
-    : (isDark ? "Use light mode" : "Use dark mode");
-  themeToggle.setAttribute("aria-label", label);
-  themeToggle.setAttribute("title", label);
-  themeToggle.classList.toggle("is-dark", isDark);
-  themeToggle.hidden = false;
+const themeLabels = document.documentElement.lang.startsWith("zh")
+  ? { default: "默认灰色", comfort: "护眼暖黄色", dark: "深色" }
+  : { default: "Default grey", comfort: "Eye-comfort warm", dark: "Dark" };
+
+let themeSwitch = null;
+
+const setTheme = (theme) => {
+  const selectedTheme = themeOptions.includes(theme) ? theme : "default";
+  root.dataset.theme = selectedTheme;
+  try { localStorage.setItem("theme", selectedTheme); } catch (error) { /* Storage may be disabled. */ }
+
+  themeSwitch?.querySelectorAll("[data-theme-choice]").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.themeChoice === selectedTheme));
+  });
+
+  const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+  if (metaThemeColor) {
+    metaThemeColor.content = selectedTheme === "dark" ? "#1d1a1e" : selectedTheme === "comfort" ? "#f5f1e8" : "#e8e8e5";
+  }
 };
 
 if (themeToggle) {
-  updateThemeControl();
-  themeToggle.addEventListener("click", () => {
-    const nextTheme = activeTheme() === "dark" ? "light" : "dark";
-    root.dataset.theme = nextTheme;
-    try { localStorage.setItem("theme", nextTheme); } catch (error) { /* Storage may be disabled. */ }
-    updateThemeControl();
+  themeSwitch = document.createElement("div");
+  themeSwitch.className = "theme-switch";
+  themeSwitch.setAttribute("role", "group");
+  themeSwitch.setAttribute("aria-label", document.documentElement.lang.startsWith("zh") ? "页面颜色主题" : "Page color theme");
+
+  themeOptions.forEach((theme) => {
+    const button = document.createElement("button");
+    button.className = "theme-choice";
+    button.type = "button";
+    button.dataset.themeChoice = theme;
+    button.setAttribute("aria-label", themeLabels[theme]);
+    button.setAttribute("title", themeLabels[theme]);
+    button.innerHTML = themeIcons[theme];
+    button.addEventListener("click", () => setTheme(theme));
+    themeSwitch.append(button);
   });
-  systemTheme.addEventListener?.("change", updateThemeControl);
+
+  themeToggle.replaceWith(themeSwitch);
+  setTheme(activeTheme());
 }
 
 document.querySelectorAll("[data-current-year]").forEach((node) => {
