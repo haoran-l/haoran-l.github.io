@@ -1478,15 +1478,3 @@ html[lang="zh-Hans"] .home h1 {
     transition-duration: 0.01ms !important;
   }
 }
-
-.visitor-tracker {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
-  pointer-events: none;
-  clip-path: inset(50%);
-}

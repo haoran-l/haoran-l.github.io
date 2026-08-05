@@ -65,7 +65,8 @@ document.querySelectorAll("[data-current-year]").forEach((node) => {
 });
 
 const footerShell = document.querySelector(".footer-shell");
-const sitePageviewUrl = "https://pub-7f356cb589ad41c8b97676a5481bfcbb.r2.dev/site-info";
+const siteAnalyticsUrl = "https://haoran-visitor-analytics.haoran-leighton-liu.workers.dev";
+const legacyPageviewUrl = "https://pub-7f356cb589ad41c8b97676a5481bfcbb.r2.dev/site-info";
 
 if (footerShell) {
   const lastUpdate = document.createElement("p");
@@ -95,12 +96,12 @@ if (footerShell) {
     return true;
   };
 
-  const loadR2Pageviews = async () => {
+  const loadLegacyPageviews = async () => {
     const controller = new AbortController();
     const timeout = window.setTimeout(() => controller.abort(), 6000);
 
     try {
-      const response = await fetch(sitePageviewUrl, {
+      const response = await fetch(legacyPageviewUrl, {
         signal: controller.signal,
       });
 
@@ -112,7 +113,40 @@ if (footerShell) {
     }
   };
 
-  loadR2Pageviews();
+  const collectPageview = async () => {
+    const endpoint = siteAnalyticsUrl.trim().replace(/\/$/, "");
+    if (!endpoint) {
+      loadLegacyPageviews();
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 6000);
+
+    try {
+      const response = await fetch(`${endpoint}/collect`, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
+        body: JSON.stringify({
+          path: window.location.pathname,
+          referrer: document.referrer,
+        }),
+        credentials: "omit",
+        keepalive: true,
+        signal: controller.signal,
+      });
+
+      if (!response.ok) throw new Error(`Analytics collector returned ${response.status}`);
+      const data = await response.json();
+      if (!setVisitCount(data.count)) throw new Error("Analytics collector returned an invalid count");
+    } catch (error) {
+      loadLegacyPageviews();
+    } finally {
+      window.clearTimeout(timeout);
+    }
+  };
+
+  collectPageview();
 }
 
 let activePronunciationAudio = null;
