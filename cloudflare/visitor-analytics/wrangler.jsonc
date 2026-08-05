@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "haoran-visitor-analytics",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-08-01",
+  "workers_dev": true,
+  "vars": {
+    "ALLOWED_ORIGIN": "https://haoran-l.github.io",
+    "ADMIN_EMAIL": "haoran.leighton.liu@outlook.com",
+    "RETENTION_DAYS": "90"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "haoran-visitor-analytics",
+      "database_id": "3f14ad9e-8828-45e1-a4fd-3efa45ed2862"
+    }
+  ],
+  "triggers": {
+    "crons": ["17 3 * * *"]
+  }
+}
