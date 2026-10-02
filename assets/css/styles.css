@@ -490,6 +490,11 @@ html[lang="zh-Hans"] .home h1 {
   line-height: 1.58;
 }
 
+.home .intro {
+  text-align: justify;
+  text-align-last: left;
+}
+
 .profile-links {
   display: flex;
   flex-wrap: wrap;
@@ -1365,6 +1370,10 @@ html[lang="zh-Hans"] .home h1 {
   .home-copy {
     grid-row: 2;
     grid-column: 1;
+  }
+
+  .home .intro {
+    text-align: left;
   }
 
   .home h1 {
