@@ -621,6 +621,10 @@ html[lang="zh-Hans"] .home h1 {
   padding: 0;
 }
 
+.paper-entry + .paper-entry {
+  margin-top: 1.75rem;
+}
+
 .paper-entry h3 {
   margin: 0;
   font-family: var(--serif);
