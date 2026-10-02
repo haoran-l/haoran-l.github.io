@@ -368,8 +368,8 @@ img {
 
 .home {
   display: grid;
-  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.38fr);
-  gap: clamp(4.25rem, 9vw, 7.25rem);
+  grid-template-columns: minmax(280px, 0.58fr) minmax(0, 1.42fr);
+  gap: clamp(3.75rem, 8vw, 6.5rem);
   align-items: start;
   padding: clamp(2.75rem, 6vh, 4.25rem) 0 clamp(1.75rem, 3vh, 2.5rem);
 }
@@ -491,14 +491,14 @@ html[lang="zh-Hans"] .home h1 {
 }
 
 .home .intro {
+  max-width: 690px;
   text-align: justify;
   text-align-last: left;
 }
 
 html[lang="en"] .home .intro {
-  -webkit-hyphens: auto;
-  hyphens: auto;
-  hyphenate-limit-chars: 8 3 3;
+  -webkit-hyphens: none;
+  hyphens: none;
 }
 
 .profile-links {
