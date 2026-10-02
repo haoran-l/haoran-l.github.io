@@ -495,6 +495,12 @@ html[lang="zh-Hans"] .home h1 {
   text-align-last: left;
 }
 
+html[lang="en"] .home .intro {
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 8 3 3;
+}
+
 .profile-links {
   display: flex;
   flex-wrap: wrap;
