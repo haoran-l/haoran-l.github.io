@@ -14,7 +14,7 @@
     { slug: "kai-kung-leng", name: "Kai Kung Leng", zh: "雞公嶺", images: ["kai-kung-leng.jpg", "kai-kung-leng-02.jpg", "kai-kung-leng-03.jpg", "kai-kung-leng-04.jpg", "kai-kung-leng-05.jpg", "kai-kung-leng-06.jpg", "kai-kung-leng-07.jpg", "kai-kung-leng-08.jpg", "kai-kung-leng-09.jpg", "kai-kung-leng-10.jpg", "kai-kung-leng-11.jpg"], alt: "Open ridgelines and mountain scenery at Kai Kung Leng", note: "Long, open ridgelines with broad views across Hong Kong's northern landscape." }
   ];
   routes.push({ slug: "lion-rock", name: "Lion Rock", zh: "獅子山", images: ["lion-rock-5c6a6ba13aa85a694e4968753849d36b.jpg", "lion-rock-b00d5f54678823262ba8cde902966e14.jpg", "lion-rock-b193cee027ee1f94f770a1355b87f363.jpg", "lion-rock-f6ecf04da158d64a04bc1edd4fd84df2.jpg", "lion-rock-3904b900bdf097dd95dd9b3ead266630.jpg", "lion-rock-fd54376550c24d43920da51d79055f73.jpg"], alt: "City views, forest trails, and hills around Lion Rock", note: "City views, forest paths, and open skies around Lion Rock." });
-  const pageVersion = "20261020-3";
+  const pageVersion = "20261020-4";
   const assetVersion = "20260726-8";
   const page = document.querySelector("[data-hike-page]");
   const sidebar = document.querySelector("[data-trail-sidebar]");
@@ -58,13 +58,20 @@
     return;
   }
 
+  // Duplicate the end photos outside the real album so a wrap travels one slide.
+  const slides = route.images.map((image, index) => ({ image, index, clone: false }));
+  if (photoCount > 1) {
+    slides.unshift({ image: route.images[photoCount - 1], index: photoCount - 1, clone: true });
+    slides.push({ image: route.images[0], index: 0, clone: true });
+  }
+
   page.innerHTML = `
     <div class="route-gallery" data-gallery>
       <div class="route-gallery-track" data-gallery-track tabindex="0" aria-label="${route.name} photo album">
-        ${route.images.map((image, index) => `
-          <figure class="route-slide">
+        ${slides.map(({ image, index, clone }) => `
+          <figure class="route-slide"${clone ? ' aria-hidden="true" data-gallery-clone' : ""}>
             ${slug === "lion-rock" ? `<img class="route-slide-backdrop" src="../assets/img/hikes/${image}?v=${assetVersion}" alt="" aria-hidden="true" loading="lazy">` : ""}
-            <img src="../assets/img/hikes/${image}?v=${assetVersion}" alt="${route.alt}, photograph ${index + 1} of ${photoCount}" ${index === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+            <img src="../assets/img/hikes/${image}?v=${assetVersion}" alt="${clone ? "" : `${route.alt}, photograph ${index + 1} of ${photoCount}`}" ${index === 0 && !clone ? 'fetchpriority="high"' : clone ? 'loading="eager"' : 'loading="lazy"'}>
           </figure>`).join("")}
       </div>
       ${photoCount > 1 ? `
@@ -91,24 +98,43 @@
   const supportsHover = window.matchMedia("(hover: hover)").matches;
   let activeIndex = 0;
   let frame = 0;
+  let settleTimer = 0;
+  let isSliding = false;
   let autoplayTimer = 0;
   let userPaused = reducedMotion;
   let hoverPaused = false;
   let focusPaused = false;
   const autoplayDelay = 5000;
+  const wrapIndex = (index) => ((index % photoCount) + photoCount) % photoCount;
 
   const updateControls = () => {
-    activeIndex = Math.max(0, Math.min(photoCount - 1, Math.round(track.scrollLeft / track.clientWidth)));
+    if (!track.clientWidth) return;
+    activeIndex = wrapIndex(Math.round(track.scrollLeft / track.clientWidth) - 1);
     current.textContent = String(activeIndex + 1);
   };
 
-  const goTo = (index, behavior) => {
-    const target = ((index % photoCount) + photoCount) % photoCount;
-    const wraps = index < 0 || index >= photoCount;
+  const finishScroll = () => {
+    window.clearTimeout(settleTimer);
+    if (!track.clientWidth) return;
+    const slot = Math.round(track.scrollLeft / track.clientWidth);
+    // Rebase only after reaching a clone. Its real counterpart looks identical.
+    if (slot === 0 || slot === photoCount + 1) {
+      track.scrollTo({ left: (slot === 0 ? photoCount : 1) * track.clientWidth, behavior: "instant" });
+    }
+    isSliding = false;
+    updateControls();
+  };
+
+  const moveBy = (direction) => {
+    if (isSliding || !track.clientWidth) return;
+    const slot = Math.round(track.scrollLeft / track.clientWidth);
+    isSliding = true;
     track.scrollTo({
-      left: target * track.clientWidth,
-      behavior: behavior || (reducedMotion || wraps ? "instant" : "smooth")
+      left: (slot + direction) * track.clientWidth,
+      behavior: reducedMotion ? "instant" : "smooth"
     });
+    // The scroll listener refreshes this fallback while motion continues.
+    settleTimer = window.setTimeout(finishScroll, 180);
   };
 
   const clearAutoplay = () => {
@@ -129,7 +155,7 @@
     if (userPaused || reducedMotion || hoverPaused || focusPaused || document.hidden) return;
 
     autoplayTimer = window.setTimeout(() => {
-      goTo(activeIndex + 1);
+      moveBy(1);
       scheduleAutoplay();
     }, autoplayDelay);
   };
@@ -139,11 +165,11 @@
   };
 
   previousButton.addEventListener("click", () => {
-    goTo(activeIndex - 1);
+    moveBy(-1);
     restartAutoplay();
   });
   nextButton.addEventListener("click", () => {
-    goTo(activeIndex + 1);
+    moveBy(1);
     restartAutoplay();
   });
   autoplayButton.addEventListener("click", () => {
@@ -158,15 +184,18 @@
   track.addEventListener("scroll", () => {
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(updateControls);
+    window.clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(finishScroll, 180);
   }, { passive: true });
+  track.addEventListener("scrollend", finishScroll);
   track.addEventListener("keydown", (event) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
-      goTo(activeIndex - 1);
+      moveBy(-1);
     }
     if (event.key === "ArrowRight") {
       event.preventDefault();
-      goTo(activeIndex + 1);
+      moveBy(1);
     }
   });
   if (supportsHover) {
@@ -195,10 +224,14 @@
     }
   });
   window.addEventListener("resize", () => {
+    window.clearTimeout(settleTimer);
+    isSliding = false;
+    track.scrollTo({ left: (activeIndex + 1) * track.clientWidth, behavior: "instant" });
     updateControls();
     restartAutoplay();
   }, { passive: true });
   updateAutoplayButton();
+  track.scrollTo({ left: track.clientWidth, behavior: "instant" });
   updateControls();
   scheduleAutoplay();
 })();
