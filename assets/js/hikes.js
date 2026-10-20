@@ -9,19 +9,35 @@
     { slug: "sai-kung-north", name: "Sai Kung North", zh: "西貢北", images: ["sai-kung-north.jpg", "sai-kung-north-02.jpg", "sai-kung-north-03.jpg", "sai-kung-north-04.jpg", "sai-kung-north-05.jpg"], alt: "Mountain scenery in Sai Kung North", note: "Mountain water and a rugged path through the northeastern landscape." },
     { slug: "pat-sin-leng", name: "Pat Sin Leng", zh: "八仙嶺", images: ["pat-sin-leng.jpg", "pat-sin-leng-02.jpg", "pat-sin-leng-03.jpg", "pat-sin-leng-04.jpg", "pat-sin-leng-05.jpg", "pat-sin-leng-06.jpg", "pat-sin-leng-07.jpg"], alt: "Mountain scenery at Pat Sin Leng", note: "A steep ridgeline walk across one of Hong Kong's most distinctive mountain profiles." },
     { slug: "ma-on-shan", name: "Ma On Shan", zh: "馬鞍山", images: ["ma-on-shan.jpg", "ma-on-shan-02.jpg", "ma-on-shan-03.jpg", "ma-on-shan-04.jpg", "ma-on-shan-05.jpg", "ma-on-shan-06.jpg"], alt: "Mountain ridges and coastline seen from Ma On Shan", note: "A high ridge with the islands and coastline spread below." },
-    { slug: "luk-chau-stone-bushland", name: "Luk Chau Stone Bushland", zh: "鹿巢石林", images: ["luk-chau-stone-bushland.jpg", "luk-chau-stone-bushland-02.jpg", "luk-chau-stone-bushland-03.jpg", "luk-chau-stone-bushland-04.jpg", "luk-chau-stone-bushland-05.jpg"], alt: "Rock formations and hillside scenery at Luk Chau Stone Bushland", note: "A rugged hillside landscape shaped by striking clusters of weathered stone." },
+    { slug: "luk-chau-stone-bushland", name: "Luk Chau Stone Forest", zh: "鹿巢石林", images: ["luk-chau-stone-bushland.jpg", "luk-chau-stone-bushland-02.jpg", "luk-chau-stone-bushland-03.jpg", "luk-chau-stone-bushland-04.jpg", "luk-chau-stone-bushland-05.jpg"], alt: "Rock formations and hillside scenery at Luk Chau Stone Forest", note: "A rugged hillside landscape shaped by striking clusters of weathered stone." },
     { slug: "tai-to-yan", name: "Tai To Yan", zh: "大刀屻", images: ["tai-to-yan-04.jpg", "tai-to-yan.jpg", "tai-to-yan-02.jpg", "tai-to-yan-03.jpg", "tai-to-yan-05.jpg", "tai-to-yan-06.jpg", "tai-to-yan-07.jpg", "tai-to-yan-08.jpg", "tai-to-yan-09.jpg"], alt: "Woodland and mountain scenery at Tai To Yan", note: "A shaded woodland path between the ridgelines." },
     { slug: "kai-kung-leng", name: "Kai Kung Leng", zh: "雞公嶺", images: ["kai-kung-leng.jpg", "kai-kung-leng-02.jpg", "kai-kung-leng-03.jpg", "kai-kung-leng-04.jpg", "kai-kung-leng-05.jpg", "kai-kung-leng-06.jpg", "kai-kung-leng-07.jpg", "kai-kung-leng-08.jpg", "kai-kung-leng-09.jpg", "kai-kung-leng-10.jpg", "kai-kung-leng-11.jpg"], alt: "Open ridgelines and mountain scenery at Kai Kung Leng", note: "Long, open ridgelines with broad views across Hong Kong's northern landscape." }
   ];
-  const pageVersion = "20260801-1";
+  routes.push({ slug: "lion-rock", name: "Lion Rock", zh: "獅子山", images: ["lion-rock-5c6a6ba13aa85a694e4968753849d36b.jpg", "lion-rock-b00d5f54678823262ba8cde902966e14.jpg", "lion-rock-b193cee027ee1f94f770a1355b87f363.jpg", "lion-rock-f6ecf04da158d64a04bc1edd4fd84df2.jpg", "lion-rock-3904b900bdf097dd95dd9b3ead266630.jpg", "lion-rock-fd54376550c24d43920da51d79055f73.jpg"], alt: "City views, forest trails, and hills around Lion Rock", note: "City views, forest paths, and open skies around Lion Rock." });
+  const pageVersion = "20261020-1";
   const assetVersion = "20260726-8";
-  const routeHref = (route) => `${route.slug}.html?v=${pageVersion}`;
-
   const page = document.querySelector("[data-hike-page]");
   const sidebar = document.querySelector("[data-trail-sidebar]");
-  if (!page || !sidebar) return;
+  if (!sidebar) return;
+  const routeHref = (route) => `${page ? "" : "hikes/"}${route.slug}.html?v=${pageVersion}`;
+  const slug = page?.dataset.hikePage;
+  const splitIndex = Math.ceil(routes.length / 2);
+  const sidebarMarkup = (items, label) => `
+    <p class="trail-sidebar-label">${label}</p>
+    <nav class="trail-index" aria-label="${label}">
+      ${items.map((item) => `
+        <a href="${routeHref(item)}"${item.slug === slug ? ' aria-current="page"' : ""}>
+          <span><strong title="${item.name}">${item.name}</strong><small lang="zh-Hant">${item.zh}</small></span>
+        </a>`).join("")}
+    </nav>`;
+  sidebar.innerHTML = sidebarMarkup(routes.slice(0, splitIndex), "Trails &amp; Places");
+  const rightSidebar = document.createElement("aside");
+  rightSidebar.className = "trail-sidebar trail-sidebar-right";
+  rightSidebar.setAttribute("aria-label", "More hiking routes");
+  rightSidebar.innerHTML = sidebarMarkup(routes.slice(splitIndex), "Trails &amp; Places");
+  sidebar.parentElement.append(rightSidebar);
+  if (!page) return;
 
-  const slug = page.dataset.hikePage;
   const routeIndex = routes.findIndex((route) => route.slug === slug);
   if (routeIndex < 0) return;
   const route = routes[routeIndex];
@@ -29,15 +45,18 @@
   const next = routes[(routeIndex + 1) % routes.length];
   const photoCount = route.images.length;
 
-  sidebar.innerHTML = `
-    <p class="trail-sidebar-label">Trails &amp; Places</p>
-    <nav class="trail-index" aria-label="Hiking routes">
-      ${routes.map((item, index) => `
-        <a href="${routeHref(item)}"${item.slug === slug ? ' aria-current="page"' : ""}>
-          <span class="trail-number">${String(index + 1).padStart(2, "0")}</span>
-          <span><strong>${item.name}</strong><small lang="zh-Hant">${item.zh}</small></span>
-        </a>`).join("")}
-    </nav>`;
+  if (photoCount === 0) {
+    page.innerHTML = `
+      <section class="route-gallery route-gallery-empty" aria-label="Lion Rock photo album coming soon">
+        <svg class="trail-placeholder-art" viewBox="0 0 400 300" fill="none" aria-hidden="true"><path d="M-20 230 90 132 170 198 265 95 420 231M-20 267 120 198 190 246 310 160 420 233"/><circle cx="321" cy="65" r="20"/></svg>
+        <div class="route-empty-copy"><p>More from the trail, soon.</p><span>Photos from Lion Rock are on their way.</span></div>
+      </section>
+      <nav class="route-pager" aria-label="Adjacent hiking routes">
+        <a href="${routeHref(previous)}">← ${previous.name}</a>
+        <a href="${routeHref(next)}">${next.name} →</a>
+      </nav>`;
+    return;
+  }
 
   page.innerHTML = `
     <div class="route-gallery" data-gallery>
