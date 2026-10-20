@@ -14,7 +14,7 @@
     { slug: "kai-kung-leng", name: "Kai Kung Leng", zh: "雞公嶺", images: ["kai-kung-leng.jpg", "kai-kung-leng-02.jpg", "kai-kung-leng-03.jpg", "kai-kung-leng-04.jpg", "kai-kung-leng-05.jpg", "kai-kung-leng-06.jpg", "kai-kung-leng-07.jpg", "kai-kung-leng-08.jpg", "kai-kung-leng-09.jpg", "kai-kung-leng-10.jpg", "kai-kung-leng-11.jpg"], alt: "Open ridgelines and mountain scenery at Kai Kung Leng", note: "Long, open ridgelines with broad views across Hong Kong's northern landscape." }
   ];
   routes.push({ slug: "lion-rock", name: "Lion Rock", zh: "獅子山", images: ["lion-rock-5c6a6ba13aa85a694e4968753849d36b.jpg", "lion-rock-b00d5f54678823262ba8cde902966e14.jpg", "lion-rock-b193cee027ee1f94f770a1355b87f363.jpg", "lion-rock-f6ecf04da158d64a04bc1edd4fd84df2.jpg", "lion-rock-3904b900bdf097dd95dd9b3ead266630.jpg", "lion-rock-fd54376550c24d43920da51d79055f73.jpg"], alt: "City views, forest trails, and hills around Lion Rock", note: "City views, forest paths, and open skies around Lion Rock." });
-  const pageVersion = "20261020-1";
+  const pageVersion = "20261020-2";
   const assetVersion = "20260726-8";
   const page = document.querySelector("[data-hike-page]");
   const sidebar = document.querySelector("[data-trail-sidebar]");
@@ -99,15 +99,14 @@
   const updateControls = () => {
     activeIndex = Math.max(0, Math.min(photoCount - 1, Math.round(track.scrollLeft / track.clientWidth)));
     current.textContent = String(activeIndex + 1);
-    previousButton.disabled = activeIndex === 0;
-    nextButton.disabled = activeIndex === photoCount - 1;
   };
 
   const goTo = (index, behavior) => {
-    const target = Math.max(0, Math.min(photoCount - 1, index));
+    const target = ((index % photoCount) + photoCount) % photoCount;
+    const wraps = index < 0 || index >= photoCount;
     track.scrollTo({
       left: target * track.clientWidth,
-      behavior: behavior || (reducedMotion ? "auto" : "smooth")
+      behavior: behavior || (reducedMotion || wraps ? "instant" : "smooth")
     });
   };
 
@@ -129,11 +128,7 @@
     if (userPaused || reducedMotion || hoverPaused || focusPaused || document.hidden) return;
 
     autoplayTimer = window.setTimeout(() => {
-      if (activeIndex === photoCount - 1) {
-        goTo(0, "auto");
-      } else {
-        goTo(activeIndex + 1);
-      }
+      goTo(activeIndex + 1);
       scheduleAutoplay();
     }, autoplayDelay);
   };
