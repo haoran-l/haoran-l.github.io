@@ -168,12 +168,29 @@
 }
 
 [data-hike-page="lion-rock"] .route-slide {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   height: 100%;
   aspect-ratio: auto;
+  background: var(--paper);
 }
 
 [data-hike-page="lion-rock"] .route-slide img {
+  position: relative;
+  z-index: 1;
   object-fit: contain;
+}
+
+[data-hike-page="lion-rock"] .route-slide img.route-slide-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  filter: blur(24px) saturate(0.75);
+  opacity: 0.6;
+  transform: scale(1.12);
+  pointer-events: none;
 }
 
 .route-gallery-empty {
